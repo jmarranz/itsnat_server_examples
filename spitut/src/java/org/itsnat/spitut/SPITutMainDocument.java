@@ -151,7 +151,10 @@ public class SPITutMainDocument implements EventListener
         setStateTitle(state.getStateTitle());
         String stateName = state.getStateName();
         itsNatDoc.addCodeToSend("spiSite.setURLReference(\"" + stateName + "\");");
-        googleAnalyticsElem.setAttribute("src",googleAnalyticsIFrameURL + stateName);
+        // googleAnalyticsElem.setAttribute("src",googleAnalyticsIFrameURL + stateName);
+        // http://stackoverflow.com/questions/24407573/how-can-i-make-an-iframe-not-save-to-history-in-chrome
+        String jsIFrameRef = itsNatDoc.getScriptUtil().getNodeReference(googleAnalyticsElem);
+        itsNatDoc.addCodeToSend("var elem = " + jsIFrameRef + "; try{ elem.contentWindow.location.replace('" + googleAnalyticsIFrameURL + stateName + "'); } catch(e) {}");
     }
 
     public void handleEvent(Event evt)
