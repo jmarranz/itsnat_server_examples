@@ -2,7 +2,7 @@
 
 Online demo of the tutorial: Single Page Interface *Stateless* SEO Compatible Web Site With ItsNat
 
-Shows how to build web sites with the same capabilities as page based
+Shows how to build *stateless* (web session is not used) web sites with the same capabilities as page based
 like bookmarking, SEO, JavaScript disabled and visit counters.
 
 This web site is developed with ItsNat, NetBeans, Java 1.6 and Tomcat 6.0.
