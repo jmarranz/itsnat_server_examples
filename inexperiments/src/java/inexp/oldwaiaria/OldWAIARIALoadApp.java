@@ -15,7 +15,7 @@ public class OldWAIARIALoadApp
         pathPrefix = pathPrefix + "oldwaiaria/pages/";
 
         ItsNatDocumentTemplate docTemplate;
-        docTemplate = itsNatServlet.registerItsNatDocumentTemplate("oldwaiaria_scoreboard","text/html", pathPrefix + "oldwaiaria_scoreboard.xhtml");
+        docTemplate = itsNatServlet.registerItsNatDocumentTemplate("oldwaiaria_scoreboard","text/html", pathPrefix + "oldwaiaria_scoreboard.html");
         docTemplate.setEventsEnabled(false);
     }
 }

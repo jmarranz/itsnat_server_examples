@@ -11,7 +11,7 @@ public class HybridCSLoadApp
         pathPrefix = pathPrefix + "hybridcs/pages/";
 
         ItsNatDocumentTemplate docTemplate;
-        docTemplate = itsNatServlet.registerItsNatDocumentTemplate("hybridcs","text/html", pathPrefix + "hybridcs.xhtml");
+        docTemplate = itsNatServlet.registerItsNatDocumentTemplate("hybridcs","text/html", pathPrefix + "hybridcs.html");
         docTemplate.addItsNatServletRequestListener(new HybridCSLoadListener());
     }
 }

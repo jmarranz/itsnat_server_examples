@@ -16,7 +16,7 @@ public class MathMLLoadApp
 
         // http://webkit.org/demos/mathml/MathMLDemo.xhtml
         ItsNatDocumentTemplate docTemplate;
-        docTemplate = itsNatServlet.registerItsNatDocumentTemplate("mathml","text/html", pathPrefix + "mathml.xhtml");
+        docTemplate = itsNatServlet.registerItsNatDocumentTemplate("mathml","text/html", pathPrefix + "mathml.html");
         docTemplate.setEventsEnabled(false);
     }
 }

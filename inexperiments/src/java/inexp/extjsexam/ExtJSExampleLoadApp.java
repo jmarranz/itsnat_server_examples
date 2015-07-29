@@ -20,15 +20,15 @@ public class ExtJSExampleLoadApp
         DBSimulator dataModel = new DBSimulator();
 
         ItsNatDocumentTemplate docTemplate;
-        docTemplate = itsNatServlet.registerItsNatDocumentTemplate("extjsexample","text/html", pagesPrefix + "extjsexample.xhtml");
+        docTemplate = itsNatServlet.registerItsNatDocumentTemplate("extjsexample","text/html", pagesPrefix + "extjsexample.html");
         docTemplate.addItsNatServletRequestListener(new ExtJSExampleLoadListener(dataModel));
 
         ItsNatDocFragmentTemplate docFragTemplate;
-        docFragTemplate = itsNatServlet.registerItsNatDocFragmentTemplate("extjsexample_introduction", "text/html", fragsPrefix + "introduction.xhtml");
-        docFragTemplate = itsNatServlet.registerItsNatDocFragmentTemplate("extjsexample_paneltable", "text/html", fragsPrefix + "panel_table.xhtml");
-        docFragTemplate = itsNatServlet.registerItsNatDocFragmentTemplate("extjsexample_add_new_item", "text/html", fragsPrefix + "add_new_item.xhtml");
-        docFragTemplate = itsNatServlet.registerItsNatDocFragmentTemplate("extjsexample_confirm_remove_item", "text/html", fragsPrefix + "confirm_remove_item.xhtml");
-        docFragTemplate = itsNatServlet.registerItsNatDocFragmentTemplate("extjsexample_error_new_item", "text/html", fragsPrefix + "error_new_item.xhtml");
+        docFragTemplate = itsNatServlet.registerItsNatDocFragmentTemplate("extjsexample_introduction", "text/html", fragsPrefix + "introduction.html");
+        docFragTemplate = itsNatServlet.registerItsNatDocFragmentTemplate("extjsexample_paneltable", "text/html", fragsPrefix + "panel_table.html");
+        docFragTemplate = itsNatServlet.registerItsNatDocFragmentTemplate("extjsexample_add_new_item", "text/html", fragsPrefix + "add_new_item.html");
+        docFragTemplate = itsNatServlet.registerItsNatDocFragmentTemplate("extjsexample_confirm_remove_item", "text/html", fragsPrefix + "confirm_remove_item.html");
+        docFragTemplate = itsNatServlet.registerItsNatDocFragmentTemplate("extjsexample_error_new_item", "text/html", fragsPrefix + "error_new_item.html");
     }
 
 }
