@@ -6,8 +6,7 @@ Shows how to configure a simple ItsNat web application with Spring Dependency In
 
 * The example is the "core" example shown in Reference Manual in this case configured with Spring.
 
-* This web application has been developed with ItsNat, NetBeans, Java 1.6 (compiled to
-  Java 1.5 binary format), Tomcat 6.0 and Spring 3.
+* This web application has been developed with ItsNat, NetBeans, Java 1.6, Tomcat 6.0 and Spring 3.
 
 * With very minor modifications this program could be ported to any other configuration
   supported by ItsNat framework.

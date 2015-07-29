@@ -13,4 +13,5 @@ supported by ItsNat framework.
 
 Online explanation of this web application is in ItsNat website.
 
-http://itsnat.sourceforge.net/index.php?_page=support.tutorial.spi_site
+http://www.itsnat.org/#!st=support.tutorial.spi_site
+
