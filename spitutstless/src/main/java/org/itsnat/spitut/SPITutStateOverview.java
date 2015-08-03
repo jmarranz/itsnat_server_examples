@@ -3,11 +3,11 @@ package org.itsnat.spitut;
 
 public class SPITutStateOverview extends SPITutState
 {
-    public SPITutStateOverview(SPITutMainDocument spiTutDoc,boolean popup)
+    public SPITutStateOverview(SPITutMainDocument spiTutDoc,boolean showPopup)
     {
-        super(spiTutDoc);
+        super(spiTutDoc,!showPopup);
 
-        if (popup) showOverviewPopup();
+        if (showPopup) showOverviewPopup();
         else cleanOverviewPopup();
     }
 

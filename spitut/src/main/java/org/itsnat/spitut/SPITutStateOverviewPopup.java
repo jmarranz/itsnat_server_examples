@@ -20,7 +20,7 @@ public class SPITutStateOverviewPopup extends SPITutState implements EventListen
 
     public SPITutStateOverviewPopup(SPITutStateOverview parent)
     {
-        super(parent.getSPITutMainDocument());
+        super(parent.getSPITutMainDocument(),true);
         this.parent = parent;
 
         SPITutMainDocument spiTutDoc = parent.getSPITutMainDocument();
@@ -52,11 +52,13 @@ public class SPITutStateOverviewPopup extends SPITutState implements EventListen
         return "overview.popup";
     }
     
+    @Override
     public void handleEvent(Event evt)
     {
         dispose();
     }
 
+    @Override
     public void dispose()
     {
         ((EventTarget)container).removeEventListener("click",this, false);

@@ -12,15 +12,15 @@ public class SPITutStateOverview extends SPITutState implements EventListener
     protected Element popupElem;
     protected SPITutStateOverviewPopup popup;
 
-    public SPITutStateOverview(SPITutMainDocument spiTutDoc,boolean popup)
+    public SPITutStateOverview(SPITutMainDocument spiTutDoc,boolean showPopup)
     {
-        super(spiTutDoc);
+        super(spiTutDoc,!showPopup);
 
         HTMLDocument doc = getItsNatHTMLDocument().getHTMLDocument();
         this.popupElem = doc.getElementById("popupId");
         ((EventTarget)popupElem).addEventListener("click",this,false);
 
-        if (popup) showOverviewPopup();
+        if (showPopup) showOverviewPopup();
     }
 
     @Override

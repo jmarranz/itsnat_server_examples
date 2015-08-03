@@ -17,13 +17,14 @@ public class SPITutStateDetail extends SPITutState implements EventListener
     
     public SPITutStateDetail(SPITutMainDocument spiTutDoc)
     {
-        super(spiTutDoc);
+        super(spiTutDoc,true);
 
         HTMLDocument doc = getItsNatHTMLDocument().getHTMLDocument();
         this.detailMoreLink = doc.getElementById("detailMoreId");
         ((EventTarget)detailMoreLink).addEventListener("click",this,false);
     }
 
+    @Override
     public void dispose()
     {
         ((EventTarget)detailMoreLink).removeEventListener("click",this,false);
@@ -41,6 +42,7 @@ public class SPITutStateDetail extends SPITutState implements EventListener
         return "detail";
     }
 
+    @Override
     public void handleEvent(Event evt)
     {
         if (detailMoreElem == null)

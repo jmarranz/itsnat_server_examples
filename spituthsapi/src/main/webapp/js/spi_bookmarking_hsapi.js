@@ -32,7 +32,13 @@ function LocationState()
         url2 = url2 + stateName;
         if (url == url2) return;
 
-        window.history.pushState(null, null, url2);        
+        if (window.history.pushState)
+            window.history.pushState(null, null, url2);   
+        else
+        {
+            if (window.location.href != url2)
+                window.location.href = url2;
+        }
     }
     
     function isStateNameChanged(newUrl)
@@ -69,13 +75,6 @@ function SPISite()
     function load() // page load phase
     {
         if (this.disabled) return;
-
-        /*
-        var currLoc = new LocationState();
-        var stateName = currLoc.getStateName();
-        if (stateName == null) return;
-        this.initialURLWithState = currLoc.getURL();
-        */
     }
 
     function setURLWithState(stateName)
@@ -90,14 +89,6 @@ function SPISite()
         if (!this.firstTime) return;
         this.firstTime = false;
 
-/*
-        if (this.initialURLWithState != null)
-        {
-            // Loads the initial state in URL if different to default
-            currLoc.setURL( this.initialURLWithState );
-            this.initialURLWithState = null;
-        }
-*/
         this.detectURLStateChange();
     }
 

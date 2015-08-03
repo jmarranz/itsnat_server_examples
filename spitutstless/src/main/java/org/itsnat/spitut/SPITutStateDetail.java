@@ -11,7 +11,7 @@ public class SPITutStateDetail extends SPITutState
 {
     public SPITutStateDetail(SPITutMainDocument spiTutDoc,String stateSecondaryName)
     {
-        super(spiTutDoc);
+        super(spiTutDoc,true);
         
         HTMLDocument doc = getItsNatHTMLDocument().getHTMLDocument();            
         Element detailMoreLink = doc.getElementById("detailMoreId");        

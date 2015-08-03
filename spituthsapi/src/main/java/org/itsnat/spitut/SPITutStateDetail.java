@@ -17,7 +17,7 @@ public class SPITutStateDetail extends SPITutState implements EventListener
     
     public SPITutStateDetail(SPITutMainDocument spiTutDoc)
     {
-        super(spiTutDoc);
+        super(spiTutDoc,true);
 
         HTMLDocument doc = getItsNatHTMLDocument().getHTMLDocument();
         this.detailMoreLink = doc.getElementById("detailMoreId");

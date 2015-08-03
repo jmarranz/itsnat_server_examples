@@ -7,11 +7,12 @@ public abstract class SPITutState
 {
     protected SPITutMainDocument spiTutDoc;
 
-    public SPITutState(SPITutMainDocument spiTutDoc)
+    public SPITutState(SPITutMainDocument spiTutDoc,boolean register)
     {
         this.spiTutDoc = spiTutDoc;
 
-        spiTutDoc.registerState(this);
+        if (register)
+            spiTutDoc.registerState(this);
     }
 
     public SPITutMainDocument getSPITutMainDocument()
