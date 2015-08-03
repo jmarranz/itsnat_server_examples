@@ -5,33 +5,20 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="expires" content="Wed, 1 Dec 1997 03:01:00 GMT" />
     <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
-    <title id="titleId" itsnat:nocache="true">Tutorial: Single Page Interface STATELESS SEO Compatible Web Site With ItsNat</title>
+    <title id="titleId" itsnat:nocache="true">Tutorial: Single Page Interface SEO Compatible Web Site With ItsNat</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script type="text/javascript" src="js/spi_bookmarking.js?timestamp=2015-07-31_01"></script>
+    <script type="text/javascript" src="js/spi_bookmarking_hsapi.js?timestamp=2015-08-02_02"></script>
     <script type="text/javascript">
-    function removeById(id)
+    function setState(name)
     {
-        var elem = document.getElementById(id);
-        if (!elem) return;
-        elem.parentNode.removeChild(elem);
-    }
-    function removeChildren(node)
-    {
-        while(node.firstChild) { var child = node.firstChild; node.removeChild(child); }; // Altnernative: node.innerHTML = ""
-    }
-
-    function setState(state_name,state_secondary_name)
-    {
-        if (typeof document.getItsNatDoc == "undefined") return; // Too soon, page is not fully loaded        
-        var userEvt = document.getItsNatDoc().createEventStateless();
-        userEvt.setExtraParam('itsnat_doc_name',"main");  
-        userEvt.setExtraParam('state_name',state_name);
-        if (state_secondary_name) userEvt.setExtraParam('state_secondary_name',state_secondary_name);
-        document.getItsNatDoc().dispatchEventStateless(userEvt, 3 /*XHR_ASYNC_HOLD*/, 1000000);            
+        if (typeof document.getItsNatDoc == "undefined") return; // Too soon, page is not fully loaded
+        var itsNatDoc = document.getItsNatDoc();
+        var evt = itsNatDoc.createUserEvent("setState");
+        evt.setExtraParam("name",name);
+        itsNatDoc.dispatchUserEvent(null,evt);
     }
     window.spiSite.onBackForward = setState;
     </script>
-      
 </head>
 <body>
 
@@ -40,7 +27,7 @@
     <tbody>
     <tr style="height:50px;">
         <td>
-            <h2 style="text-align:center;">Tutorial: Single Page Interface STATELESS SEO Compatible Web Site With ItsNat</h2>
+            <h2 style="text-align:center;">Tutorial: Single Page Interface SEO Compatible Web Site With ItsNat</h2>
         </td>
     </tr>
     <tr style="height:40px;">
@@ -49,11 +36,11 @@
                 <tbody>
                 <tr class="mainMenu" itsnat:nocache="true">
                     <td id="menuOpOverviewId">
-                        <a href="?st=overview" onclick="setState('overview'); return false;"
+                        <a href="overview" onclick="setState('overview'); return false;"
                            class="menuLink">Overview</a>
                     </td>
                     <td id="menuOpDetailId">
-                        <a href="?st=detail" onclick="setState('detail'); return false;"
+                        <a href="detail" onclick="setState('detail'); return false;"
                            class="menuLink">Detail</a>
                     </td>
                     <td> </td>

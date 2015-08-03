@@ -3,22 +3,22 @@ package org.itsnat.spitut;
 
 public class SPITutStateOverview extends SPITutState
 {
-    public SPITutStateOverview(SPITutMainDocument spiTutDoc,boolean showPopup)
+    public SPITutStateOverview(SPITutMainDocument spiTutDoc,boolean popup)
     {
         super(spiTutDoc);
 
-        if (showPopup) showOverviewPopup();
+        if (popup) showOverviewPopup();
         else cleanOverviewPopup();
     }
 
     public void showOverviewPopup()
     {
-        new SPITutStateOverviewShowPopup(this);
+        new SPITutStateOverviewPopup(this);
     }
 
     public void cleanOverviewPopup()
     {    
-        SPITutStateOverviewShowPopup.dispose(this);
+        SPITutStateOverviewPopup.dispose(this);
     }
     
 

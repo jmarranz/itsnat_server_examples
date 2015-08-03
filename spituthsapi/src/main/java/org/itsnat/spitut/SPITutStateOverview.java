@@ -23,12 +23,14 @@ public class SPITutStateOverview extends SPITutState implements EventListener
         if (popup) showOverviewPopup();
     }
 
+    @Override
     public void dispose()
     {
         if (popup != null) popup.dispose();
         ((EventTarget)popupElem).removeEventListener("click",this,false);
     }
 
+    @Override
     public void handleEvent(Event evt)
     {
         showOverviewPopup();

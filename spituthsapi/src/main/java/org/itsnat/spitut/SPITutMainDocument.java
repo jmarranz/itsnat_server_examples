@@ -4,9 +4,9 @@ package org.itsnat.spitut;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
-import org.itsnat.core.ClientDocument;
 import org.itsnat.core.ItsNatServlet;
-import org.itsnat.core.event.ItsNatEventDOMStateless;
+import org.itsnat.core.domutil.ItsNatDOMUtil;
+import org.itsnat.core.event.ItsNatUserEvent;
 import org.itsnat.core.html.ItsNatHTMLDocument;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
 import org.itsnat.core.http.ItsNatHttpServletResponse;
@@ -24,7 +24,9 @@ public class SPITutMainDocument implements EventListener
     protected String title;
     protected HTMLTitleElement titleElem;
     protected Map<String,Element> menuElemMap = new HashMap<String,Element>();
+    protected Element currentMenuItemElem;
     protected Element contentParentElem;
+    protected SPITutState currentState;
     protected Element googleAnalyticsElem;
     protected String googleAnalyticsIFrameURL;
 
@@ -41,34 +43,27 @@ public class SPITutMainDocument implements EventListener
         menuElemMap.put("detail",doc.getElementById("menuOpDetailId"));
         // More menu options here...
 
+        itsNatDoc.addUserEventListener(null,"setState", this);
+
         this.contentParentElem = doc.getElementById("contentParentId");
         this.googleAnalyticsElem = doc.getElementById("googleAnalyticsId");
         this.googleAnalyticsIFrameURL = googleAnalyticsElem.getAttribute("src");  // Initial value
 
-        if (!itsNatDoc.isCreatedByStatelessEvent())
-        {
-            HttpServletRequest servReq = request.getHttpServletRequest();
-            String stateName = servReq.getParameter("_escaped_fragment_"); // Google bot, has priority, its value is based on the hash fragment
-            if (stateName != null)
-            {
-                if (stateName.startsWith("st=")) // st means "state"
-                    stateName = stateName.substring("st=".length(), stateName.length());
-                else // Wrong format
-                    stateName = "overview";
-            }
-            else
-            {
-                stateName = servReq.getParameter("st");
-                if (stateName == null)
-                    stateName = "overview";
-            }
+        String stateName;
+        HttpServletRequest servReq = request.getHttpServletRequest();
+        String servPath = servReq.getServletPath();        
+        if (servPath == null || servPath.equals("/") || servPath.equals("/servlet") || !servPath.startsWith("/"))  
+        {  
+            stateName = "overview";
+        } 
+        else  
+        {  
+            // Pretty URL case  
+            stateName = servPath.substring(1); // "/name" => "name"  
+            stateName = "".equals(stateName) ? "overview" : stateName; 
+        }        
 
-            changeState(stateName);
-        }
-        else
-        {
-            itsNatDoc.addEventListener(this);            
-        }
+        changeState(stateName);
     }
 
     public ItsNatHTMLDocument getItsNatHTMLDocument()
@@ -78,7 +73,7 @@ public class SPITutMainDocument implements EventListener
 
     public void setStateTitle(String stateTitle)
     {
-        String pageTitle = stateTitle + " - " + title;
+        String pageTitle = title + " - " + stateTitle;
         if (itsNatDoc.isLoading())
             titleElem.setText(pageTitle);
         else
@@ -106,17 +101,12 @@ public class SPITutMainDocument implements EventListener
     public String getFirstLevelStateName(String stateName)
     {
         String firstLevelName = stateName;
-        int pos = stateName.indexOf('.');
-        if (pos != -1) firstLevelName = stateName.substring(0, pos); // Case "overview.popup"
+        int pos = stateName.indexOf('-');
+        if (pos != -1) firstLevelName = stateName.substring(0, pos); // Case "overview-popup"
         return firstLevelName;
     }
 
     public void changeState(String stateName)
-    {    
-        changeState(stateName,null);
-    }
-    
-    public void changeState(String stateName,String stateSecondaryName)
     {
         String fragmentName = getFirstLevelStateName(stateName);
 
@@ -126,15 +116,15 @@ public class SPITutMainDocument implements EventListener
             changeState("not_found");
             return;
         }
-        
-        if (!itsNatDoc.isLoading())
+
+        // Cleaning previous state:
+        if (currentState != null)
         {
-            ClientDocument clientDoc = itsNatDoc.getClientDocumentOwner();
-            String contentParentRef = clientDoc.getScriptUtil().getNodeReference(contentParentElem);            
-            clientDoc.addCodeToSend("removeChildren(" + contentParentRef + ");");  // ".innerHTML = '';"
+            currentState.dispose();
+            this.currentState = null;
         }
-        
-        //ItsNatDOMUtil.removeAllChildren(contentParentElem);
+
+        ItsNatDOMUtil.removeAllChildren(contentParentElem);
 
         // Setting new state:
         changeActiveMenu(stateName);
@@ -142,16 +132,14 @@ public class SPITutMainDocument implements EventListener
         DocumentFragment frag = template.loadDocumentFragment(itsNatDoc);
         contentParentElem.appendChild(frag);
 
-        if (stateName.equals("overview")||stateName.equals("overview.popup"))
+        if (stateName.equals("overview")||stateName.equals("overview-popup"))
         {
-            boolean popup = stateName.equals("overview.popup");
-            new SPITutStateOverview(this,popup);
+            boolean popup = stateName.equals("overview-popup");
+            this.currentState = new SPITutStateOverview(this,popup);
         }
         else if (stateName.equals("detail"))
-        {
-            new SPITutStateDetail(this,stateSecondaryName);
-        }
-        
+            this.currentState = new SPITutStateDetail(this);
+
         itsNatDoc.addCodeToSend("try{ window.scroll(0,-5000); }catch(ex){}");
         // try/catch is used to avoid exceptions when some (mobile) browser does not support window.scroll()
     }
@@ -160,7 +148,7 @@ public class SPITutMainDocument implements EventListener
     {
         setStateTitle(state.getStateTitle());
         String stateName = state.getStateName();
-        itsNatDoc.addCodeToSend("spiSite.setURLReference(\"" + stateName + "\");");
+        itsNatDoc.addCodeToSend("spiSite.setURLWithState(\"" + stateName + "\");");
         // googleAnalyticsElem.setAttribute("src",googleAnalyticsIFrameURL + stateName);
         // http://stackoverflow.com/questions/24407573/how-can-i-make-an-iframe-not-save-to-history-in-chrome
         String jsIFrameRef = itsNatDoc.getScriptUtil().getNodeReference(googleAnalyticsElem);
@@ -170,25 +158,24 @@ public class SPITutMainDocument implements EventListener
     @Override
     public void handleEvent(Event evt)
     {
-        ItsNatEventDOMStateless itsNatEvt = (ItsNatEventDOMStateless)evt;
-        
-        String stateName = (String)itsNatEvt.getExtraParam("state_name");
-        String stateSecondaryName = (String)itsNatEvt.getExtraParam("state_secondary_name");
-        
-        changeState(stateName,stateSecondaryName);
+        if (evt instanceof ItsNatUserEvent)
+        {
+            ItsNatUserEvent itsNatEvt = (ItsNatUserEvent)evt;
+            String name = (String)itsNatEvt.getExtraParam("name");
+            changeState(name);
+        }
     }
 
     public void changeActiveMenu(String stateName)
     {
         String mainMenuItem = getFirstLevelStateName(stateName);
 
-        for(Element menuItemElem : menuElemMap.values())
-        {
-            menuItemElem.setAttribute("class","foo");            
-            menuItemElem.removeAttribute("class");
-        }
-       
-        Element currentMenuItemElem = menuElemMap.get(mainMenuItem);
-        currentMenuItemElem.setAttribute("class","menuOpSelected");
+        if (currentMenuItemElem != null)
+            currentMenuItemElem.removeAttribute("class");
+
+        this.currentMenuItemElem = menuElemMap.get(mainMenuItem);
+
+        if (currentMenuItemElem != null)
+            currentMenuItemElem.setAttribute("class","menuOpSelected");
     }
 }

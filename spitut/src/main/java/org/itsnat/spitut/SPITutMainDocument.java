@@ -100,17 +100,17 @@ public class SPITutMainDocument implements EventListener
         return template.loadDocumentFragment(itsNatDoc);
     }
 
-    public String getFragmentName(String stateName)
+    public String getFirstLevelStateName(String stateName)
     {
-        String fragmentName = stateName;
+        String firstLevelName = stateName;
         int pos = stateName.indexOf('.');
-        if (pos != -1) fragmentName = stateName.substring(0, pos); // Case "overview.showpopup"
-        return fragmentName;
+        if (pos != -1) firstLevelName = stateName.substring(0, pos); // Case "overview.popup"
+        return firstLevelName;
     }
 
     public void changeState(String stateName)
     {
-        String fragmentName = getFragmentName(stateName);
+        String fragmentName = getFirstLevelStateName(stateName);
 
         ItsNatDocFragmentTemplate template = getFragmentTemplate(fragmentName);
         if (template == null)
@@ -134,9 +134,9 @@ public class SPITutMainDocument implements EventListener
         DocumentFragment frag = template.loadDocumentFragment(itsNatDoc);
         contentParentElem.appendChild(frag);
 
-        if (stateName.equals("overview")||stateName.equals("overview.showpopup"))
+        if (stateName.equals("overview")||stateName.equals("overview.popup"))
         {
-            boolean popup = stateName.equals("overview.showpopup");
+            boolean popup = stateName.equals("overview.popup");
             this.currentState = new SPITutStateOverview(this,popup);
         }
         else if (stateName.equals("detail"))
@@ -157,6 +157,7 @@ public class SPITutMainDocument implements EventListener
         itsNatDoc.addCodeToSend("var elem = " + jsIFrameRef + "; try{ elem.contentWindow.location.replace('" + googleAnalyticsIFrameURL + stateName + "'); } catch(e) {}");
     }
 
+    @Override
     public void handleEvent(Event evt)
     {
         if (evt instanceof ItsNatUserEvent)
@@ -169,10 +170,7 @@ public class SPITutMainDocument implements EventListener
 
     public void changeActiveMenu(String stateName)
     {
-        String mainMenuItem;
-        int pos = stateName.indexOf('.');
-        if (pos != -1) mainMenuItem = stateName.substring(0, pos); // Case "overview.showpopup"
-        else mainMenuItem = stateName;
+        String mainMenuItem = getFirstLevelStateName(stateName);
 
         if (currentMenuItemElem != null)
             currentMenuItemElem.removeAttribute("class");

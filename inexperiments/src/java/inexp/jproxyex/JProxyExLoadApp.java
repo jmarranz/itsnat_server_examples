@@ -31,7 +31,7 @@ public class JProxyExLoadApp
         String inputPath = realPath + "/WEB-INF/jproxyex/code/";           
         String classFolder = null; // context.getRealPath("/") + "/WEB-INF/classes";
         Iterable<String> compilationOptions = Arrays.asList(new String[]{"-source","1.6","-target","1.6"});
-        long scanPeriod = 500;        
+        long scanPeriod = 1000;        
                 
         RelProxyOnReloadListener proxyListener = new RelProxyOnReloadListener() {
             @Override
