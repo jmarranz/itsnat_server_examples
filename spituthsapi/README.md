@@ -1,10 +1,13 @@
-# Single Page Interface SEO Compatible Web Site With ItsNat
+Single Page Interface SEO Compatible Web Site With ItsNat Using History API
+--------------------------------------------
 
-Online demo of the tutorial: Single Page Interface SEO Compatible Web Site With ItsNat
+Source code of the tutorial: Single Page Interface SEO Compatible Web Site With ItsNat Using History API
 
+Shows how to build singe page interface web sites with the same capabilities as page based
+like bookmarking, SEO, JavaScript disabled and visit counters like Google Analytics.
 
-Shows how to build web sites with the same capabilities as page based
-like bookmarking, SEO, JavaScript disabled and visit counters.
+In this example History API is used to simulate page navigation, in browsers with no History API support a degraded real paged based navigation is used
+for the "fundamental states".
 
 This web site is developed with ItsNat, NetBeans, Java 1.6 and Tomcat 6.0.
 
@@ -13,5 +16,5 @@ supported by ItsNat framework.
 
 Online explanation of this web application is in ItsNat website.
 
-http://www.itsnat.org/#!st=support.tutorial.spi_site
+http://www.itsnat.org/#!st=support.tutorial.spi_site_hist_api
 

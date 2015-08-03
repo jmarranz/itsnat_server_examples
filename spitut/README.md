@@ -1,10 +1,12 @@
-# Single Page Interface SEO Compatible Web Site With ItsNat
+Single Page Interface SEO Compatible Web Site With ItsNat
+--------------------------------------------
 
-Online demo of the tutorial: Single Page Interface SEO Compatible Web Site With ItsNat
+Source code of the tutorial: Single Page Interface SEO Compatible Web Site With ItsNat
 
+Shows how to build singe page interface web sites with the same capabilities as page based
+like bookmarking, SEO, JavaScript disabled and visit counters like Google Analytics.
 
-Shows how to build web sites with the same capabilities as page based
-like bookmarking, SEO, JavaScript disabled and visit counters.
+In this example hash bangs are used compatible with Google's AJAX crawling.
 
 This web site is developed with ItsNat, NetBeans, Java 1.6 and Tomcat 6.0.
 
