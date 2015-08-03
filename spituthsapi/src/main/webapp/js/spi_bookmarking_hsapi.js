@@ -104,17 +104,6 @@ function SPISite()
             func.spiSite = this;
             window.addEventListener("popstate", func, false);                
         }
-        else
-        {
-            var time = 200;
-            var func = function()
-            {
-                arguments.callee.spiSite.detectURLStateChangeCB();
-                window.setTimeout(arguments.callee,time);
-            };
-            func.spiSite = this;
-            window.setTimeout(func,time);
-        }
     }
 
     function detectURLStateChangeCB()
