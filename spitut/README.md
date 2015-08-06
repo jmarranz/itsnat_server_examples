@@ -1,7 +1,7 @@
-Single Page Interface SEO Compatible Web Site With ItsNat
+Single Page Interface SEO Compatible Web Site With ItsNat STATEFUL Using HASHBANGS
 --------------------------------------------
 
-Source code of the tutorial: Single Page Interface SEO Compatible Web Site With ItsNat
+Source code of the tutorial: Single Page Interface SEO Compatible Web Site With ItsNat STATEFUL Using HASHBANGS
 
 Shows how to build singe page interface web sites with the same capabilities as page based
 like bookmarking, SEO, JavaScript disabled and visit counters like Google Analytics.

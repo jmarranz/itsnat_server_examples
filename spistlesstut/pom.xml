@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.itsnat</groupId>
-  <artifactId>spitutstless</artifactId>
+  <artifactId>spistlesstut</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
 
-  <name>spitutstless</name>
+  <name>spistlesstut</name>
   <url>http://www.itsnat.org</url>
 
     <properties>
