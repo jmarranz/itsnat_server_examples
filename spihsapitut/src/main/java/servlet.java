@@ -1,6 +1,7 @@
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import org.itsnat.core.ClientErrorMode;
 import org.itsnat.core.ItsNatServletConfig;
 import org.itsnat.core.ItsNatServletContext;
 import org.itsnat.core.http.HttpServletWrapper;
@@ -24,6 +25,8 @@ public class servlet extends HttpServletWrapper
         ItsNatServletConfig itsNatConfig = itsNatServlet.getItsNatServletConfig();
         itsNatConfig.setFastLoadMode(true); // Not really needed, is the same as default
 
+        itsNatConfig.setClientErrorMode(ClientErrorMode.NOT_CATCH_ERRORS);
+        
         String pathBase = getServletContext().getRealPath("/");
         String pathPages =     pathBase + "/WEB-INF/pages/";
         String pathFragments = pathBase + "/WEB-INF/fragments/";
@@ -45,11 +48,11 @@ public class servlet extends HttpServletWrapper
                     pathFragments + "not_found.html");
         itsNatServlet.registerItsNatDocFragmentTemplate("overview","text/html",
                     pathFragments + "overview.html");
-        itsNatServlet.registerItsNatDocFragmentTemplate("overview.popup","text/html",
+        itsNatServlet.registerItsNatDocFragmentTemplate("overview-popup","text/html",
                     pathFragments + "overview_popup.html");
         itsNatServlet.registerItsNatDocFragmentTemplate("detail","text/html",
                     pathFragments + "detail.html");
-        itsNatServlet.registerItsNatDocFragmentTemplate("detail.more","text/html",
+        itsNatServlet.registerItsNatDocFragmentTemplate("detail-more","text/html",
                     pathFragments + "detail_more.html");
     }
 }

@@ -49,6 +49,7 @@ public class SPITutStateOverview extends SPITutState implements EventListener
         spiTutDoc.registerState(this);
     }
     
+
     @Override
     public String getStateTitle()
     {

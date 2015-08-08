@@ -24,6 +24,7 @@ public class SPITutStateDetail extends SPITutState implements EventListener
         ((EventTarget)detailMoreLink).addEventListener("click",this,false);
     }
 
+    @Override
     public void dispose()
     {
         ((EventTarget)detailMoreLink).removeEventListener("click",this,false);
@@ -41,11 +42,12 @@ public class SPITutStateDetail extends SPITutState implements EventListener
         return "detail";
     }
 
+    @Override
     public void handleEvent(Event evt)
     {
         if (detailMoreElem == null)
         {
-            DocumentFragment frag = spiTutDoc.loadDocumentFragment("detail.more");
+            DocumentFragment frag = spiTutDoc.loadDocumentFragment("detail-more");
             this.detailMoreElem = ItsNatTreeWalker.getFirstChildElement(frag);
         }
 

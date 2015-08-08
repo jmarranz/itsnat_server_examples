@@ -62,7 +62,7 @@ function SPISite()
     this.load = load;
     this.detectURLStateChange = detectURLStateChange;
     this.detectURLStateChangeCB = detectURLStateChangeCB;
-    this.setURLWithState = setURLWithState;
+    this.setStateInURL = setStateInURL;
     this.onBackForward = null; // Public, user defined
 
     this.firstTime = true;
@@ -77,7 +77,7 @@ function SPISite()
         if (this.disabled) return;
     }
 
-    function setURLWithState(stateName)
+    function setStateInURL(stateName)
     {
         if (this.disabled) return;
 

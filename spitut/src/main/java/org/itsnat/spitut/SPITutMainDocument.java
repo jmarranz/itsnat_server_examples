@@ -75,7 +75,7 @@ public class SPITutMainDocument implements EventListener
 
     public void setStateTitle(String stateTitle)
     {
-        String pageTitle = title + " - " + stateTitle;
+        String pageTitle = stateTitle + " - " + title;
         if (itsNatDoc.isLoading())
             titleElem.setText(pageTitle);
         else
@@ -150,7 +150,7 @@ public class SPITutMainDocument implements EventListener
     {
         setStateTitle(state.getStateTitle());
         String stateName = state.getStateName();
-        itsNatDoc.addCodeToSend("spiSite.setURLReference(\"" + stateName + "\");");
+        itsNatDoc.addCodeToSend("spiSite.setStateInURL(\"" + stateName + "\");");
         // googleAnalyticsElem.setAttribute("src",googleAnalyticsIFrameURL + stateName);
         // http://stackoverflow.com/questions/24407573/how-can-i-make-an-iframe-not-save-to-history-in-chrome
         String jsIFrameRef = itsNatDoc.getScriptUtil().getNodeReference(googleAnalyticsElem);
