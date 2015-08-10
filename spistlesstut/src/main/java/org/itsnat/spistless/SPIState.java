@@ -1,13 +1,13 @@
 
-package org.itsnat.spitut;
+package org.itsnat.spistless;
 
 import org.itsnat.core.html.ItsNatHTMLDocument;
 
-public abstract class SPITutState
+public abstract class SPIState
 {
-    protected SPITutMainDocument spiTutDoc;
+    protected SPIMainDocument spiTutDoc;
 
-    public SPITutState(SPITutMainDocument spiTutDoc,boolean register)
+    public SPIState(SPIMainDocument spiTutDoc,boolean register)
     {
         this.spiTutDoc = spiTutDoc;
 
@@ -15,7 +15,7 @@ public abstract class SPITutState
             spiTutDoc.registerState(this);
     }
 
-    public SPITutMainDocument getSPITutMainDocument()
+    public SPIMainDocument getSPIMainDocument()
     {
         return spiTutDoc;
     }
@@ -25,7 +25,7 @@ public abstract class SPITutState
         return spiTutDoc.getItsNatHTMLDocument();
     }
 
-    public abstract void dispose();
+    //public abstract void dispose();
     public abstract String getStateTitle();
     public abstract String getStateName();
 }

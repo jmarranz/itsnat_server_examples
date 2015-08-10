@@ -1,13 +1,14 @@
 
-package org.itsnat.spitut;
+package org.itsnat.spistlesstut;
 
 import org.itsnat.core.ClientDocument;
 import org.itsnat.core.domutil.ItsNatTreeWalker;
+import org.itsnat.spistless.SPIState;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.html.HTMLDocument;
 
-public class SPITutStateDetail extends SPITutState
+public class SPITutStateDetail extends SPIState
 {
     public SPITutStateDetail(SPITutMainDocument spiTutDoc,String stateSecondaryName)
     {
@@ -30,7 +31,7 @@ public class SPITutStateDetail extends SPITutState
         else
         {
             ClientDocument clientDoc = getItsNatHTMLDocument().getClientDocumentOwner();
-            clientDoc.addCodeToSend("removeById('detailContentId');");
+            clientDoc.addCodeToSend("window.spiSite.removeById('detailContentId');");
                       
             detailMoreLink.setTextContent("More Detail");   
             detailMoreLink.setAttribute("action","moreDetail");            

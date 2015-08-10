@@ -1,11 +1,12 @@
 
-package org.itsnat.spitut;
+package org.itsnat.spistlesstut;
 
-import org.itsnat.spi.SPIState;
+import org.itsnat.core.event.ItsNatEventDOMStateless;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
 import org.itsnat.core.http.ItsNatHttpServletResponse;
-import org.itsnat.spi.SPIMainDocument;
-import org.itsnat.spi.SPIMainDocumentConfig;
+import org.itsnat.spistless.SPIMainDocument;
+import org.itsnat.spistless.SPIMainDocumentConfig;
+import org.itsnat.spistless.SPIState;
 import org.w3c.dom.Element;
 
 public class SPITutMainDocument extends SPIMainDocument
@@ -27,7 +28,7 @@ public class SPITutMainDocument extends SPIMainDocument
     }        
     
     @Override
-    public SPIState createSPIState(String stateName)    
+    public SPIState createSPIState(String stateName,ItsNatEventDOMStateless itsNatEvt)    
     {
         if (stateName.equals("overview")||stateName.equals("overview.popup"))
         {
@@ -35,19 +36,26 @@ public class SPITutMainDocument extends SPIMainDocument
             return new SPITutStateOverview(this,popup);
         }
         else if (stateName.equals("detail"))
-            return new SPITutStateDetail(this);
+        {
+            String stateSecondaryName = itsNatEvt != null? (String)itsNatEvt.getExtraParam("state_secondary_name") : null;            
+            return new SPITutStateDetail(this,stateSecondaryName);
+        }
         else
             return null;
     }
     
-
     @Override
-    public void onChangeActiveMenu(Element prevActiveMenuItemElem,Element currActiveMenuItemElem,String mainMenuItemName)
+    public void onChangeActiveMenu(Element menuItemElem,boolean active)
     {
-        if (prevActiveMenuItemElem != null)
-            prevActiveMenuItemElem.removeAttribute("class");
-        if (currActiveMenuItemElem != null)
-            currActiveMenuItemElem.setAttribute("class","menuOpSelected");
+        if (active)
+        {
+            menuItemElem.setAttribute("class","menuOpSelected");
+        }
+        else
+        {
+            menuItemElem.setAttribute("class","foo");            
+            menuItemElem.removeAttribute("class");
+        }        
     }
- 
+
 }

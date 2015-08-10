@@ -1,6 +1,7 @@
 
 package org.itsnat.spitut;
 
+import org.itsnat.spi.SPIState;
 import org.itsnat.core.domutil.ItsNatTreeWalker;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
@@ -9,7 +10,7 @@ import org.w3c.dom.events.EventListener;
 import org.w3c.dom.events.EventTarget;
 import org.w3c.dom.html.HTMLDocument;
 
-public class SPITutStateDetail extends SPITutState implements EventListener
+public class SPITutStateDetail extends SPIState implements EventListener
 {
     protected Element detailMoreLink;
     protected Element detailMoreElem;

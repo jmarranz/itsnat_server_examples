@@ -1,12 +1,12 @@
 
-package org.itsnat.spitut;
+package org.itsnat.spistless;
 
-import java.util.HashMap;
-import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.itsnat.core.ClientDocument;
 import org.itsnat.core.ItsNatServlet;
+import org.itsnat.core.domutil.ItsNatDOMUtil;
 import org.itsnat.core.event.ItsNatEventDOMStateless;
+import org.itsnat.core.event.ItsNatUserEvent;
 import org.itsnat.core.html.ItsNatHTMLDocument;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
 import org.itsnat.core.http.ItsNatHttpServletResponse;
@@ -15,38 +15,27 @@ import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.events.Event;
 import org.w3c.dom.events.EventListener;
-import org.w3c.dom.html.HTMLDocument;
-import org.w3c.dom.html.HTMLTitleElement;
 
-public class SPITutMainDocument implements EventListener
+public abstract class SPIMainDocument
 {
     protected ItsNatHTMLDocument itsNatDoc;
+    protected SPIMainDocumentConfig config;
     protected String title;
-    protected HTMLTitleElement titleElem;
-    protected Map<String,Element> menuElemMap = new HashMap<String,Element>();
-    protected Element contentParentElem;
-    protected Element googleAnalyticsElem;
+    protected SPIState currentState;
     protected String googleAnalyticsIFrameURL;
 
-    public SPITutMainDocument(ItsNatHttpServletRequest request, ItsNatHttpServletResponse response)
+    public SPIMainDocument(ItsNatHttpServletRequest request, ItsNatHttpServletResponse response,SPIMainDocumentConfig config)
     {
+        config.check();
+        
+        this.config = config;
         this.itsNatDoc = (ItsNatHTMLDocument)request.getItsNatDocument();
 
-        HTMLDocument doc = itsNatDoc.getHTMLDocument();
-
-        this.titleElem = (HTMLTitleElement)doc.getElementById("titleId");
-        this.title = titleElem.getText(); // Initial value
-
-        menuElemMap.put("overview",doc.getElementById("menuOpOverviewId"));
-        menuElemMap.put("detail",doc.getElementById("menuOpDetailId"));
-        // More menu options here...
-
-        this.contentParentElem = doc.getElementById("contentParentId");
-        this.googleAnalyticsElem = doc.getElementById("googleAnalyticsId");
-        this.googleAnalyticsIFrameURL = googleAnalyticsElem.getAttribute("src");  // Initial value
+        this.title = config.titleElem.getText(); // Initial value
+        this.googleAnalyticsIFrameURL = config.googleAnalyticsElem.getAttribute("src");  // Initial value
 
         if (!itsNatDoc.isCreatedByStatelessEvent())
-        {
+        {        
             HttpServletRequest servReq = request.getHttpServletRequest();
             String stateName = servReq.getParameter("_escaped_fragment_"); // Google bot, has priority, its value is based on the hash fragment
             if (stateName != null)
@@ -54,20 +43,33 @@ public class SPITutMainDocument implements EventListener
                 if (stateName.startsWith("st=")) // st means "state"
                     stateName = stateName.substring("st=".length(), stateName.length());
                 else // Wrong format
-                    stateName = "overview";
+                    stateName = config.defaultStateName;
             }
             else
             {
                 stateName = servReq.getParameter("st");
                 if (stateName == null)
-                    stateName = "overview";
+                    stateName = config.defaultStateName;
             }
 
             changeState(stateName);
         }
         else
         {
-            itsNatDoc.addEventListener(this);            
+            EventListener listener = new EventListener()
+            {
+                @Override
+                public void handleEvent(Event evt)
+                {
+                    ItsNatEventDOMStateless itsNatEvt = (ItsNatEventDOMStateless)evt;
+
+                    String stateName = (String)itsNatEvt.getExtraParam("state_name");
+
+                    changeState(stateName,itsNatEvt);
+                }
+            };
+            
+            itsNatDoc.addEventListener(listener);             
         }
     }
 
@@ -80,14 +82,14 @@ public class SPITutMainDocument implements EventListener
     {
         String pageTitle = stateTitle + " - " + title;
         if (itsNatDoc.isLoading())
-            titleElem.setText(pageTitle);
+            config.titleElem.setText(pageTitle);
         else
             itsNatDoc.addCodeToSend("document.title = \"" + pageTitle + "\";\n");
     }
 
     public Element getContentParentElement()
     {
-        return contentParentElem;
+        return config.contentParentElem;
     }
 
     public ItsNatDocFragmentTemplate getFragmentTemplate(String name)
@@ -111,84 +113,64 @@ public class SPITutMainDocument implements EventListener
         return firstLevelName;
     }
 
-    public void changeState(String stateName)
+    public SPIState changeState(String stateName)
     {    
-        changeState(stateName,null);
+        return changeState(stateName,null);
     }
     
-    public void changeState(String stateName,String stateSecondaryName)
+    public SPIState changeState(String stateName,ItsNatEventDOMStateless itsNatEvt)
     {
         String fragmentName = getFirstLevelStateName(stateName);
 
         ItsNatDocFragmentTemplate template = getFragmentTemplate(fragmentName);
         if (template == null)
         {
-            changeState("not_found");
-            return;
+            return changeState(config.notFoundStateName);
         }
-        
+
+        // Cleaning previous state:
         if (!itsNatDoc.isLoading())
         {
             ClientDocument clientDoc = itsNatDoc.getClientDocumentOwner();
-            String contentParentRef = clientDoc.getScriptUtil().getNodeReference(contentParentElem);            
-            clientDoc.addCodeToSend("removeChildren(" + contentParentRef + ");");  // ".innerHTML = '';"
+            String contentParentRef = clientDoc.getScriptUtil().getNodeReference(config.contentParentElem);            
+            clientDoc.addCodeToSend("window.spiSite.removeChildren(" + contentParentRef + ");");  // ".innerHTML = '';"
         }
-        
-        //ItsNatDOMUtil.removeAllChildren(contentParentElem);
 
         // Setting new state:
         changeActiveMenu(stateName);
 
         DocumentFragment frag = template.loadDocumentFragment(itsNatDoc);
-        contentParentElem.appendChild(frag);
+        config.contentParentElem.appendChild(frag);
 
-        if (stateName.equals("overview")||stateName.equals("overview.popup"))
-        {
-            boolean popup = stateName.equals("overview.popup");
-            new SPITutStateOverview(this,popup);
-        }
-        else if (stateName.equals("detail"))
-        {
-            new SPITutStateDetail(this,stateSecondaryName);
-        }
+        this.currentState = createSPIState(stateName,itsNatEvt);
         
-        itsNatDoc.addCodeToSend("try{ window.scroll(0,-5000); }catch(ex){}");
-        // try/catch is used to avoid exceptions when some (mobile) browser does not support window.scroll()
+        return currentState;
     }
 
-    public void registerState(SPITutState state)
+    public abstract SPIState createSPIState(String stateName,ItsNatEventDOMStateless itsNatEvt);
+    
+    public void registerState(SPIState state)
     {
         setStateTitle(state.getStateTitle());
         String stateName = state.getStateName();
         itsNatDoc.addCodeToSend("spiSite.setStateInURL(\"" + stateName + "\");");
         // googleAnalyticsElem.setAttribute("src",googleAnalyticsIFrameURL + stateName);
         // http://stackoverflow.com/questions/24407573/how-can-i-make-an-iframe-not-save-to-history-in-chrome
-        String jsIFrameRef = itsNatDoc.getScriptUtil().getNodeReference(googleAnalyticsElem);
+        String jsIFrameRef = itsNatDoc.getScriptUtil().getNodeReference(config.googleAnalyticsElem);
         itsNatDoc.addCodeToSend("var elem = " + jsIFrameRef + "; try{ elem.contentWindow.location.replace('" + googleAnalyticsIFrameURL + stateName + "'); } catch(e) {}");
     }
 
-    @Override
-    public void handleEvent(Event evt)
-    {
-        ItsNatEventDOMStateless itsNatEvt = (ItsNatEventDOMStateless)evt;
-        
-        String stateName = (String)itsNatEvt.getExtraParam("state_name");
-        String stateSecondaryName = (String)itsNatEvt.getExtraParam("state_secondary_name");
-        
-        changeState(stateName,stateSecondaryName);
-    }
 
     public void changeActiveMenu(String stateName)
     {
-        String mainMenuItem = getFirstLevelStateName(stateName);
+        String mainMenuItemName = getFirstLevelStateName(stateName);
 
-        for(Element menuItemElem : menuElemMap.values())
+        Element currentMenuItemElem = config.menuElemMap.get(mainMenuItemName);        
+        for(Element menuItemElem : config.menuElemMap.values())
         {
-            menuItemElem.setAttribute("class","foo");            
-            menuItemElem.removeAttribute("class");
+            onChangeActiveMenu(menuItemElem,(currentMenuItemElem == menuItemElem));
         }
-       
-        Element currentMenuItemElem = menuElemMap.get(mainMenuItem);
-        currentMenuItemElem.setAttribute("class","menuOpSelected");
     }
+    
+    public abstract void onChangeActiveMenu(Element menuItemElem,boolean active);
 }

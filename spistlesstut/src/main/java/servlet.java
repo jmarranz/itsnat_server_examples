@@ -5,8 +5,8 @@ import org.itsnat.core.ItsNatServletConfig;
 import org.itsnat.core.http.HttpServletWrapper;
 import org.itsnat.core.http.ItsNatHttpServlet;
 import org.itsnat.core.tmpl.ItsNatDocumentTemplate;
-import org.itsnat.spitut.SPITutGlobalLoadRequestListener;
-import org.itsnat.spitut.SPITutMainLoadRequestListener;
+import org.itsnat.spistlesstut.SPITutGlobalLoadRequestListener;
+import org.itsnat.spistlesstut.SPITutMainLoadRequestListener;
 
 public class servlet extends HttpServletWrapper
 {

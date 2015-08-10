@@ -1,12 +1,12 @@
 
-package org.itsnat.spitut;
+package org.itsnat.spistlesstut;
 
 import org.itsnat.core.ItsNatServletRequest;
 import org.itsnat.core.ItsNatServletResponse;
 import org.itsnat.core.event.ItsNatServletRequestListener;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
 import org.itsnat.core.http.ItsNatHttpServletResponse;
-import org.itsnat.spi.SPIMainDocumentConfig;
+import org.itsnat.spistless.SPIMainDocumentConfig;
 import org.w3c.dom.Document;
 import org.w3c.dom.html.HTMLTitleElement;
 
@@ -27,7 +27,6 @@ public class SPITutMainLoadRequestListener implements ItsNatServletRequestListen
               .setNotFoundStateName("not_found");
                
                 
-        new SPITutMainDocument((ItsNatHttpServletRequest)request,(ItsNatHttpServletResponse)response,config);
+        new SPITutMainDocument((ItsNatHttpServletRequest)request,(ItsNatHttpServletResponse)response,config);        
     }
 }
-

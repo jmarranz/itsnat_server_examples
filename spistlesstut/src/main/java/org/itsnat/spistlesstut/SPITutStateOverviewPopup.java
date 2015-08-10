@@ -1,27 +1,29 @@
-package org.itsnat.spitut;
+package org.itsnat.spistlesstut;
 
 import org.itsnat.comp.ItsNatComponentManager;
 import org.itsnat.comp.layer.ItsNatModalLayer;
 import org.itsnat.core.ClientDocument;
 import org.itsnat.core.domutil.ItsNatTreeWalker;
 import org.itsnat.core.html.ItsNatHTMLDocument;
+import org.itsnat.spistless.SPIMainDocument;
+import org.itsnat.spistless.SPIState;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.html.HTMLBodyElement;
 import org.w3c.dom.html.HTMLDocument;
 
-public class SPITutStateOverviewPopup extends SPITutState
+public class SPITutStateOverviewPopup extends SPIState
 {
     protected SPITutStateOverview parent;
     protected ItsNatModalLayer layer;
 
     public SPITutStateOverviewPopup(SPITutStateOverview parent)
     {
-        super(parent.getSPITutMainDocument(),true);
+        super(parent.getSPIMainDocument(),true);
         this.parent = parent;
 
-        SPITutMainDocument spiTutDoc = parent.getSPITutMainDocument();
-        ItsNatHTMLDocument itsNatDoc = parent.getItsNatHTMLDocument();
+        SPIMainDocument spiTutDoc = getSPIMainDocument();
+        ItsNatHTMLDocument itsNatDoc = getItsNatHTMLDocument();
         HTMLDocument doc = itsNatDoc.getHTMLDocument();
         ItsNatComponentManager compMgr = itsNatDoc.getItsNatComponentManager();
         ItsNatModalLayer layer = compMgr.createItsNatModalLayer(null,false,1,0.5f,"black",null);
@@ -55,8 +57,8 @@ public class SPITutStateOverviewPopup extends SPITutState
     public static void dispose(SPITutStateOverview parent)
     {
         ClientDocument clientDoc = parent.getItsNatHTMLDocument().getClientDocumentOwner();
-        clientDoc.addCodeToSend("removeById('overviewPopupLayerContainerId');");
-        clientDoc.addCodeToSend("removeById('overviewPopupContentContainerId');"); 
+        clientDoc.addCodeToSend("window.spiSite.removeById('overviewPopupLayerContainerId');");
+        clientDoc.addCodeToSend("window.spiSite.removeById('overviewPopupContentContainerId');"); 
     }
 
 }

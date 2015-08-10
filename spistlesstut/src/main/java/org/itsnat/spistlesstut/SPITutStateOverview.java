@@ -1,7 +1,9 @@
 
-package org.itsnat.spitut;
+package org.itsnat.spistlesstut;
 
-public class SPITutStateOverview extends SPITutState
+import org.itsnat.spistless.SPIState;
+
+public class SPITutStateOverview extends SPIState
 {
     public SPITutStateOverview(SPITutMainDocument spiTutDoc,boolean showPopup)
     {

@@ -1,4 +1,4 @@
-package org.itsnat.spitut;
+package org.itsnat.spistlesstut;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
