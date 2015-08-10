@@ -7,6 +7,7 @@ import org.itsnat.core.domutil.ItsNatTreeWalker;
 import org.itsnat.core.html.ItsNatHTMLDocument;
 import org.itsnat.spistless.SPIMainDocument;
 import org.itsnat.spistless.SPIState;
+import org.itsnat.spistless.SPIStateDescriptor;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.html.HTMLBodyElement;
@@ -19,8 +20,13 @@ public class SPITutStateOverviewPopup extends SPIState
 
     public SPITutStateOverviewPopup(SPITutStateOverview parent)
     {
-        super(parent.getSPIMainDocument(),true);
-        this.parent = parent;
+        this(parent,parent.getSPIMainDocument().getSPIStateDescriptor("overview.popup"));    
+    }
+    
+    public SPITutStateOverviewPopup(SPITutStateOverview parent,SPIStateDescriptor stateDesc)
+    {
+        super(parent.getSPIMainDocument(),stateDesc,true);
+        this.parent = parent;    
 
         SPIMainDocument spiTutDoc = getSPIMainDocument();
         ItsNatHTMLDocument itsNatDoc = getItsNatHTMLDocument();
@@ -40,18 +46,6 @@ public class SPITutStateOverviewPopup extends SPIState
         
         itsNatDoc.addCodeToSend("try{ window.scroll(0,-1000); }catch(ex){}");
         // try/catch is used to prevent some mobile browser does not support it
-    }
-
-    @Override
-    public String getStateTitle()
-    {
-        return "Overview Popup";
-    }
-
-    @Override
-    public String getStateName()
-    {
-        return "overview.popup";
     }
 
     public static void dispose(SPITutStateOverview parent)

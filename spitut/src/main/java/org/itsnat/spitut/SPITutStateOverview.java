@@ -2,6 +2,7 @@
 package org.itsnat.spitut;
 
 import org.itsnat.spi.SPIState;
+import org.itsnat.spi.SPIStateDescriptor;
 import org.w3c.dom.Element;
 import org.w3c.dom.events.Event;
 import org.w3c.dom.events.EventListener;
@@ -13,9 +14,9 @@ public class SPITutStateOverview extends SPIState implements EventListener
     protected Element popupElem;
     protected SPITutStateOverviewPopup popup;
 
-    public SPITutStateOverview(SPITutMainDocument spiTutDoc,boolean showPopup)
+    public SPITutStateOverview(SPITutMainDocument spiTutDoc,SPIStateDescriptor stateDesc,boolean showPopup)
     {
-        super(spiTutDoc,!showPopup);
+        super(spiTutDoc,stateDesc,!showPopup);
 
         HTMLDocument doc = getItsNatHTMLDocument().getHTMLDocument();
         this.popupElem = doc.getElementById("popupId");
@@ -50,16 +51,4 @@ public class SPITutStateOverview extends SPIState implements EventListener
         spiTutDoc.registerState(this);
     }
     
-
-    @Override
-    public String getStateTitle()
-    {
-        return "Overview";
-    }
-
-    @Override
-    public String getStateName()
-    {
-        return "overview";
-    }
 }

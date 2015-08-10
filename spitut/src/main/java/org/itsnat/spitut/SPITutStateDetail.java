@@ -3,6 +3,7 @@ package org.itsnat.spitut;
 
 import org.itsnat.spi.SPIState;
 import org.itsnat.core.domutil.ItsNatTreeWalker;
+import org.itsnat.spi.SPIStateDescriptor;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.events.Event;
@@ -16,9 +17,9 @@ public class SPITutStateDetail extends SPIState implements EventListener
     protected Element detailMoreElem;
     protected boolean inserted = false;
     
-    public SPITutStateDetail(SPITutMainDocument spiTutDoc)
+    public SPITutStateDetail(SPITutMainDocument spiTutDoc,SPIStateDescriptor stateDesc)
     {
-        super(spiTutDoc,true);
+        super(spiTutDoc,stateDesc,true);
 
         HTMLDocument doc = getItsNatHTMLDocument().getHTMLDocument();
         this.detailMoreLink = doc.getElementById("detailMoreId");
@@ -29,18 +30,6 @@ public class SPITutStateDetail extends SPIState implements EventListener
     public void dispose()
     {
         ((EventTarget)detailMoreLink).removeEventListener("click",this,false);
-    }
-
-    @Override
-    public String getStateTitle()
-    {
-        return "Detail";
-    }
-
-    @Override
-    public String getStateName()
-    {
-        return "detail";
     }
 
     @Override

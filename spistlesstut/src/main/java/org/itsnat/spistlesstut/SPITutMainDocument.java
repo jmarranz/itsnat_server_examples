@@ -7,6 +7,7 @@ import org.itsnat.core.http.ItsNatHttpServletResponse;
 import org.itsnat.spistless.SPIMainDocument;
 import org.itsnat.spistless.SPIMainDocumentConfig;
 import org.itsnat.spistless.SPIState;
+import org.itsnat.spistless.SPIStateDescriptor;
 import org.w3c.dom.Element;
 
 public class SPITutMainDocument extends SPIMainDocument
@@ -28,17 +29,18 @@ public class SPITutMainDocument extends SPIMainDocument
     }        
     
     @Override
-    public SPIState createSPIState(String stateName,ItsNatEventDOMStateless itsNatEvt)    
+    public SPIState createSPIState(SPIStateDescriptor stateDesc,ItsNatEventDOMStateless itsNatEvt)    
     {
+        String stateName = stateDesc.getStateName();
         if (stateName.equals("overview")||stateName.equals("overview.popup"))
         {
             boolean popup = stateName.equals("overview.popup");
-            return new SPITutStateOverview(this,popup);
+            return new SPITutStateOverview(this,stateDesc,popup);
         }
         else if (stateName.equals("detail"))
         {
             String stateSecondaryName = itsNatEvt != null? (String)itsNatEvt.getExtraParam("state_secondary_name") : null;            
-            return new SPITutStateDetail(this,stateSecondaryName);
+            return new SPITutStateDetail(this,stateDesc,stateSecondaryName);
         }
         else
             return null;

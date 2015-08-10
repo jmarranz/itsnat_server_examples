@@ -6,6 +6,7 @@ import org.itsnat.comp.layer.ItsNatModalLayer;
 import org.itsnat.core.domutil.ItsNatTreeWalker;
 import org.itsnat.core.html.ItsNatHTMLDocument;
 import org.itsnat.spi.SPIMainDocument;
+import org.itsnat.spi.SPIStateDescriptor;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.events.Event;
@@ -22,7 +23,12 @@ public class SPITutStateOverviewPopup extends SPIState implements EventListener
 
     public SPITutStateOverviewPopup(SPITutStateOverview parent)
     {
-        super(parent.getSPIMainDocument(),true);
+        this(parent,parent.getSPIMainDocument().getSPIStateDescriptor("overview.popup"));    
+    }
+    
+    public SPITutStateOverviewPopup(SPITutStateOverview parent,SPIStateDescriptor stateDesc)
+    {
+        super(parent.getSPIMainDocument(),stateDesc,true);
         this.parent = parent;
 
         SPIMainDocument spiTutDoc = getSPIMainDocument();
@@ -40,18 +46,6 @@ public class SPITutStateOverviewPopup extends SPIState implements EventListener
 
         //itsNatDoc.addCodeToSend("try{ window.scroll(0,-1000); }catch(ex){}");
         // try/catch is used to prevent some mobile browser does not support it
-    }
-
-    @Override
-    public String getStateTitle()
-    {
-        return "Overview Popup";
-    }
-
-    @Override
-    public String getStateName()
-    {
-        return "overview.popup";
     }
     
     @Override

@@ -7,6 +7,7 @@ import org.itsnat.core.event.ItsNatServletRequestListener;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
 import org.itsnat.core.http.ItsNatHttpServletResponse;
 import org.itsnat.spi.SPIMainDocumentConfig;
+import org.itsnat.spi.SPIStateDescriptor;
 import org.w3c.dom.Document;
 import org.w3c.dom.html.HTMLTitleElement;
 
@@ -23,6 +24,10 @@ public class SPITutMainLoadRequestListener implements ItsNatServletRequestListen
               .setGoogleAnalyticsElement(doc.getElementById("googleAnalyticsId"))
               .addMenuElement("overview",doc.getElementById("menuOpOverviewId"))
               .addMenuElement("detail",doc.getElementById("menuOpDetailId"))        
+              .addSPIStateDescriptor(new SPIStateDescriptor("overview","Overview",true))
+              .addSPIStateDescriptor(new SPIStateDescriptor("overview.popup","Overview Popup",false))                
+              .addSPIStateDescriptor(new SPIStateDescriptor("detail","Detail",true))                
+              .addSPIStateDescriptor(new SPIStateDescriptor("not_found","Not Found",true))                  
               .setDefaultStateName("overview")
               .setNotFoundStateName("not_found");
                

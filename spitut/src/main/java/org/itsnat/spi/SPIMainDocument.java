@@ -39,8 +39,10 @@ public abstract class SPIMainDocument
             public void handleEvent(Event evt)
             {
                 ItsNatUserEvent itsNatEvt = (ItsNatUserEvent)evt;
+                ItsNatHttpServletRequest request = (ItsNatHttpServletRequest)itsNatEvt.getItsNatServletRequest();
+                ItsNatHttpServletResponse response = (ItsNatHttpServletResponse)itsNatEvt.getItsNatServletResponse();
                 String name = (String)itsNatEvt.getExtraParam("name");
-                changeState(name);
+                changeState(name,request,response);
             }        
         };
         itsNatDoc.addUserEventListener(null,"setState", listener);
@@ -61,7 +63,7 @@ public abstract class SPIMainDocument
                 stateName = config.defaultStateName;
         }
 
-        changeState(stateName);
+        changeState(stateName,request,response);
     }
 
     public ItsNatHTMLDocument getItsNatHTMLDocument()
@@ -69,6 +71,11 @@ public abstract class SPIMainDocument
         return itsNatDoc;
     }
 
+    public SPIStateDescriptor getSPIStateDescriptor(String stateName)
+    {
+        return config.stateMap.get(stateName);
+    }
+    
     public void setStateTitle(String stateTitle)
     {
         String pageTitle = stateTitle + " - " + title;
@@ -104,14 +111,20 @@ public abstract class SPIMainDocument
         return firstLevelName;
     }
 
-    public SPIState changeState(String stateName)
+    public SPIState changeState(String stateName,ItsNatHttpServletRequest request,ItsNatHttpServletResponse response)
     {
-        String fragmentName = getFirstLevelStateName(stateName);
+        SPIStateDescriptor stateDesc = config.stateMap.get(stateName);
+        if (stateDesc == null)
+        {
+            return changeState(config.notFoundStateName,request,response);
+        }        
+        
+        String fragmentName = stateDesc.isMainLevel() ? stateName : getFirstLevelStateName(stateName);
 
         ItsNatDocFragmentTemplate template = getFragmentTemplate(fragmentName);
         if (template == null)
         {
-            return changeState(config.notFoundStateName);
+            throw new RuntimeException("There is no template registered for state: " + fragmentName);
         }
 
         // Cleaning previous state:
@@ -129,12 +142,12 @@ public abstract class SPIMainDocument
         DocumentFragment frag = template.loadDocumentFragment(itsNatDoc);
         config.contentParentElem.appendChild(frag);
 
-        this.currentState = createSPIState(stateName);
+        this.currentState = createSPIState(stateDesc,request,response);
         
         return currentState;
     }
 
-    public abstract SPIState createSPIState(String stateName);
+    public abstract SPIState createSPIState(SPIStateDescriptor stateDesc,ItsNatHttpServletRequest request,ItsNatHttpServletResponse response);
     
     public void registerState(SPIState state)
     {

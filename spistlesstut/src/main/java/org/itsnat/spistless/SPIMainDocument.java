@@ -4,9 +4,7 @@ package org.itsnat.spistless;
 import javax.servlet.http.HttpServletRequest;
 import org.itsnat.core.ClientDocument;
 import org.itsnat.core.ItsNatServlet;
-import org.itsnat.core.domutil.ItsNatDOMUtil;
 import org.itsnat.core.event.ItsNatEventDOMStateless;
-import org.itsnat.core.event.ItsNatUserEvent;
 import org.itsnat.core.html.ItsNatHTMLDocument;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
 import org.itsnat.core.http.ItsNatHttpServletResponse;
@@ -78,6 +76,11 @@ public abstract class SPIMainDocument
         return itsNatDoc;
     }
 
+    public SPIStateDescriptor getSPIStateDescriptor(String stateName)
+    {
+        return config.stateMap.get(stateName);
+    }    
+    
     public void setStateTitle(String stateTitle)
     {
         String pageTitle = stateTitle + " - " + title;
@@ -120,12 +123,18 @@ public abstract class SPIMainDocument
     
     public SPIState changeState(String stateName,ItsNatEventDOMStateless itsNatEvt)
     {
-        String fragmentName = getFirstLevelStateName(stateName);
+        SPIStateDescriptor stateDesc = config.stateMap.get(stateName);
+        if (stateDesc == null)
+        {
+            return changeState(config.notFoundStateName,itsNatEvt);
+        }        
+        
+        String fragmentName = stateDesc.isMainLevel() ? stateName : getFirstLevelStateName(stateName);
 
         ItsNatDocFragmentTemplate template = getFragmentTemplate(fragmentName);
         if (template == null)
         {
-            return changeState(config.notFoundStateName);
+            throw new RuntimeException("There is no template registered for state: " + fragmentName);
         }
 
         // Cleaning previous state:
@@ -142,12 +151,12 @@ public abstract class SPIMainDocument
         DocumentFragment frag = template.loadDocumentFragment(itsNatDoc);
         config.contentParentElem.appendChild(frag);
 
-        this.currentState = createSPIState(stateName,itsNatEvt);
+        this.currentState = createSPIState(stateDesc,itsNatEvt);
         
         return currentState;
     }
 
-    public abstract SPIState createSPIState(String stateName,ItsNatEventDOMStateless itsNatEvt);
+    public abstract SPIState createSPIState(SPIStateDescriptor stateDesc,ItsNatEventDOMStateless itsNatEvt);
     
     public void registerState(SPIState state)
     {
