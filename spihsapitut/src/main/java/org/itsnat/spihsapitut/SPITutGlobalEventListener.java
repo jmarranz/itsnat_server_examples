@@ -1,5 +1,5 @@
 
-package org.itsnat.spitut;
+package org.itsnat.spihsapitut;
 
 import org.itsnat.core.ClientDocument;
 import org.itsnat.core.event.ItsNatEvent;
@@ -12,6 +12,7 @@ public class SPITutGlobalEventListener implements EventListener
     {
     }
 
+    @Override
     public void handleEvent(Event evt)
     {
         ItsNatEvent itsNatEvt = (ItsNatEvent)evt;

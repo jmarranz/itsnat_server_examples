@@ -1,7 +1,9 @@
 
-package org.itsnat.spitut;
+package org.itsnat.spihsapitut;
 
 import org.itsnat.core.domutil.ItsNatTreeWalker;
+import org.itsnat.spihsapi.SPIState;
+import org.itsnat.spihsapi.SPIStateDescriptor;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.events.Event;
@@ -9,15 +11,15 @@ import org.w3c.dom.events.EventListener;
 import org.w3c.dom.events.EventTarget;
 import org.w3c.dom.html.HTMLDocument;
 
-public class SPITutStateDetail extends SPITutState implements EventListener
+public class SPITutStateDetail extends SPIState implements EventListener
 {
     protected Element detailMoreLink;
     protected Element detailMoreElem;
     protected boolean inserted = false;
     
-    public SPITutStateDetail(SPITutMainDocument spiTutDoc)
+    public SPITutStateDetail(SPITutMainDocument spiTutDoc,SPIStateDescriptor stateDesc)
     {
-        super(spiTutDoc,true);
+        super(spiTutDoc,stateDesc,true);
 
         HTMLDocument doc = getItsNatHTMLDocument().getHTMLDocument();
         this.detailMoreLink = doc.getElementById("detailMoreId");
