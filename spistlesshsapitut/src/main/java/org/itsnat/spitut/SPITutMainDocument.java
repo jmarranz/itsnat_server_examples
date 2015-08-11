@@ -144,8 +144,13 @@ public class SPITutMainDocument implements EventListener
 
         if (stateName.equals("overview")||stateName.equals("overview.popup"))
         {
-            boolean popup = stateName.equals("overview.popup");
-            new SPITutStateOverview(this,popup);
+            boolean popup = false;
+            if (stateName.equals("overview.popup"))
+            {
+                popup = true;
+                //stateDesc = getSPIStateDescriptor("overview");
+            }
+            new SPITutStateOverview(this,/*stateDesc,*/ popup);            
         }
         else if (stateName.equals("detail"))
         {

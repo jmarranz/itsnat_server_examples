@@ -33,7 +33,12 @@ public class SPITutMainDocument extends SPIMainDocument
         String stateName = stateDesc.getStateName();
         if (stateName.equals("overview")||stateName.equals("overview.popup"))
         {
-            boolean popup = stateName.equals("overview.popup");
+            boolean popup = false;
+            if (stateName.equals("overview.popup"))
+            {
+                popup = true;
+                stateDesc = getSPIStateDescriptor("overview");
+            }
             return new SPITutStateOverview(this,stateDesc,popup);
         }
         else if (stateName.equals("detail"))

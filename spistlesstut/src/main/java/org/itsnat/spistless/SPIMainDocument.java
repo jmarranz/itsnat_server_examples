@@ -104,7 +104,8 @@ public abstract class SPIMainDocument
     public DocumentFragment loadDocumentFragment(String name)
     {
         ItsNatDocFragmentTemplate template = getFragmentTemplate(name);
-        if (template == null) return null;
+        if (template == null)        
+            throw new RuntimeException("There is no template registered for state or fragment name: " + name);        
         return template.loadDocumentFragment(itsNatDoc);
     }
 
@@ -129,14 +130,6 @@ public abstract class SPIMainDocument
             return changeState(config.notFoundStateName,itsNatEvt);
         }        
         
-        String fragmentName = stateDesc.isMainLevel() ? stateName : getFirstLevelStateName(stateName);
-
-        ItsNatDocFragmentTemplate template = getFragmentTemplate(fragmentName);
-        if (template == null)
-        {
-            throw new RuntimeException("There is no template registered for state: " + fragmentName);
-        }
-
         // Cleaning previous state:
         if (!itsNatDoc.isLoading())
         {
@@ -148,7 +141,8 @@ public abstract class SPIMainDocument
         // Setting new state:
         changeActiveMenu(stateName);
 
-        DocumentFragment frag = template.loadDocumentFragment(itsNatDoc);
+        String fragmentName = stateDesc.isMainLevel() ? stateName : getFirstLevelStateName(stateName);        
+        DocumentFragment frag = loadDocumentFragment(fragmentName);
         config.contentParentElem.appendChild(frag);
 
         this.currentState = createSPIState(stateDesc,itsNatEvt);
