@@ -1,17 +1,19 @@
 
-package org.itsnat.spitut;
+package org.itsnat.spistlesshsapitut;
 
 import org.itsnat.core.ClientDocument;
 import org.itsnat.core.domutil.ItsNatTreeWalker;
+import org.itsnat.spistlesshsapi.SPIState;
+import org.itsnat.spistlesshsapi.SPIStateDescriptor;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.html.HTMLDocument;
 
-public class SPITutStateDetail extends SPITutState
+public class SPITutStateDetail extends SPIState
 {
-    public SPITutStateDetail(SPITutMainDocument spiTutDoc,String stateSecondaryName)
+    public SPITutStateDetail(SPITutMainDocument spiTutDoc,SPIStateDescriptor stateDesc,String stateSecondaryName)
     {
-        super(spiTutDoc,true);
+        super(spiTutDoc,stateDesc,true);
         
         HTMLDocument doc = getItsNatHTMLDocument().getHTMLDocument();            
         Element detailMoreLink = doc.getElementById("detailMoreId");        
@@ -35,18 +37,6 @@ public class SPITutStateDetail extends SPITutState
             detailMoreLink.setTextContent("More Detail");   
             detailMoreLink.setAttribute("action","moreDetail");            
         }
-    }
-
-    @Override
-    public String getStateTitle()
-    {
-        return "Detail";
-    }
-
-    @Override
-    public String getStateName()
-    {
-        return "detail";
     }
 
 }

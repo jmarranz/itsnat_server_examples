@@ -5,11 +5,12 @@ import org.itsnat.core.ItsNatServletConfig;
 import org.itsnat.core.http.HttpServletWrapper;
 import org.itsnat.core.http.ItsNatHttpServlet;
 import org.itsnat.core.tmpl.ItsNatDocumentTemplate;
-import org.itsnat.spitut.SPITutGlobalLoadRequestListener;
-import org.itsnat.spitut.SPITutMainLoadRequestListener;
+import org.itsnat.spistlesshsapitut.SPITutGlobalLoadRequestListener;
+import org.itsnat.spistlesshsapitut.SPITutMainLoadRequestListener;
 
 public class servlet extends HttpServletWrapper
 {
+    @Override
     public void init(ServletConfig config) throws ServletException
     {
         super.init(config);
@@ -36,7 +37,7 @@ public class servlet extends HttpServletWrapper
         // Fragments
         itsNatServlet.registerItsNatDocFragmentTemplate("not_found","text/html", pathFragments + "not_found.html");
         itsNatServlet.registerItsNatDocFragmentTemplate("overview","text/html",  pathFragments + "overview.html");
-        itsNatServlet.registerItsNatDocFragmentTemplate("overview.popup","text/html", pathFragments + "overview_popup.html");
+        itsNatServlet.registerItsNatDocFragmentTemplate("overview-popup","text/html", pathFragments + "overview_popup.html");
         itsNatServlet.registerItsNatDocFragmentTemplate("detail","text/html", pathFragments + "detail.html");
         itsNatServlet.registerItsNatDocFragmentTemplate("detail.more","text/html", pathFragments + "detail_more.html");
     }

@@ -10,6 +10,7 @@ import org.itsnat.spistlesstut.SPITutMainLoadRequestListener;
 
 public class servlet extends HttpServletWrapper
 {
+    @Override
     public void init(ServletConfig config) throws ServletException
     {
         super.init(config);

@@ -44,15 +44,10 @@ public class servlet extends HttpServletWrapper
         docTemplate.setScriptingEnabled(false);
 
         // Fragments
-        itsNatServlet.registerItsNatDocFragmentTemplate("not_found","text/html",
-                    pathFragments + "not_found.html");
-        itsNatServlet.registerItsNatDocFragmentTemplate("overview","text/html",
-                    pathFragments + "overview.html");
-        itsNatServlet.registerItsNatDocFragmentTemplate("overview-popup","text/html",
-                    pathFragments + "overview_popup.html");
-        itsNatServlet.registerItsNatDocFragmentTemplate("detail","text/html",
-                    pathFragments + "detail.html");
-        itsNatServlet.registerItsNatDocFragmentTemplate("detail-more","text/html",
-                    pathFragments + "detail_more.html");
+        itsNatServlet.registerItsNatDocFragmentTemplate("not_found","text/html",pathFragments + "not_found.html");
+        itsNatServlet.registerItsNatDocFragmentTemplate("overview","text/html",pathFragments + "overview.html");
+        itsNatServlet.registerItsNatDocFragmentTemplate("overview-popup","text/html",pathFragments + "overview_popup.html");
+        itsNatServlet.registerItsNatDocFragmentTemplate("detail","text/html",pathFragments + "detail.html");
+        itsNatServlet.registerItsNatDocFragmentTemplate("detail-more","text/html",pathFragments + "detail_more.html");
     }
 }

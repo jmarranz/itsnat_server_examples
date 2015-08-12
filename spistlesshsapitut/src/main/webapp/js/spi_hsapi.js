@@ -15,37 +15,43 @@ function LocationState()
     function getStateName()
     {
         var url = this.getURL();        
-        var posR = url.lastIndexOf("#!st=");
+        var posR = url.lastIndexOf("/");
         if (posR == -1) return null;
-        var stateName = url.substring(posR + "#!st=".length);
+        var stateName = url.substring(posR + 1);
         if (stateName == "") return null;
         return stateName;
     }
     
     function setStateName(stateName)
     {
-        var url = this.getURL();
-        var posR = url.lastIndexOf("#");
+        var url = this.getURL();        
+        var posR = url.lastIndexOf("/");        
         var url2;
-        if (posR != -1) url2 = url.substring(0,posR);
+        if (url.length > posR + 1) url2 = url.substring(0,posR + 1);
         else url2 = url;
-        url2 = url2 + "#!st=" + stateName;
+        url2 = url2 + stateName;
         if (url == url2) return;
-        
-        window.location.href = url2;           
+
+        if (window.history.pushState)
+            window.history.pushState(null, null, url2);   
+        else
+        {
+            if (window.location.href != url2)
+                window.location.href = url2;
+        }
     }
     
     function isStateNameChanged(newUrl)
     {
         var url = this.getURL();
         if (newUrl == url) return false;
-        var posR = url.lastIndexOf("#!st=");
+        var posR = url.lastIndexOf("/");
         if (posR == -1) return false;
-        var posR2 = newUrl.lastIndexOf("#!st=");
+        var posR2 = newUrl.lastIndexOf("/");
         if (posR2 == -1) return false;        
         if (posR != posR2) return false;
-        var stateName = url.substring(posR + "#!st=".length);        
-        var newStateName = newUrl.substring(posR + "#!st=".length);
+        var stateName = url.substring(posR + 1);        
+        var newStateName = newUrl.substring(posR + 1);
         if (stateName == newStateName) return false;    
         return true;
     }
@@ -60,7 +66,6 @@ function SPISite()
     this.removeChildren = removeChildren;
     this.onBackForward = null; // Public, user defined
 
-
     this.firstTime = true;
     this.initialURLWithState = null;
     this.href = null;
@@ -71,11 +76,6 @@ function SPISite()
     function load() // page load phase
     {
         if (this.disabled) return;
-
-        var currLoc = new LocationState();
-        var stateName = currLoc.getStateName();
-        if (stateName == null) return;
-        this.initialURLWithState = currLoc.getURL();
     }
 
     function setStateInURL(stateName)
@@ -90,39 +90,20 @@ function SPISite()
         if (!this.firstTime) return;
         this.firstTime = false;
 
-        if (this.initialURLWithState != null)
-        {
-            // Loads the initial state in URL if different to default
-            currLoc.setURL( this.initialURLWithState );
-            this.initialURLWithState = null;
-        }
-
         this.detectURLStateChange();
     }
 
     function detectURLStateChange()
     {
-        var onhashchangeSupport = ("onhashchange" in window); // Supported in IE 8            
-        if (onhashchangeSupport)
+        var onpopstateSupport = ("onpopstate" in window); // Supported in IE 10            
+        if (onpopstateSupport)
         {         
             var func = function()
             {
                 arguments.callee.spiSite.detectURLStateChangeCB();
             };            
             func.spiSite = this;
-            if (window.addEventListener) window.addEventListener("hashchange", func, false);                
-            else window.attachEvent("onhashchange", func); // IE 8  https://msdn.microsoft.com/en-us/library/cc288209(v=vs.85).aspx
-        }
-        else
-        {
-            var time = 200;
-            var func = function()
-            {
-                arguments.callee.spiSite.detectURLStateChangeCB();
-                window.setTimeout(arguments.callee,time);
-            };
-            func.spiSite = this;
-            window.setTimeout(func,time);
+            window.addEventListener("popstate", func, false);                
         }
     }
 
@@ -140,7 +121,7 @@ function SPISite()
         else try { window.location.reload(true); }
              catch(ex) { window.location = window.location; }
     }
-        
+    
     function removeChildren(node) // used by spistless
     {
         while(node.firstChild) { var child = node.firstChild; node.removeChild(child); }; // Altnernative: node.innerHTML = ""
