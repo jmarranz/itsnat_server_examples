@@ -51,8 +51,8 @@ public class SPITutStateOverviewPopup extends SPIState
     public static void dispose(SPITutStateOverview parent)
     {
         ClientDocument clientDoc = parent.getItsNatHTMLDocument().getClientDocumentOwner();
-        clientDoc.addCodeToSend("window.spiSite.removeById('overviewPopupLayerContainerId');");
-        clientDoc.addCodeToSend("window.spiSite.removeById('overviewPopupContentContainerId');"); 
+        clientDoc.addCodeToSend("removeById('overviewPopupLayerContainerId');");
+        clientDoc.addCodeToSend("removeById('overviewPopupContentContainerId');"); 
     }
 
 }

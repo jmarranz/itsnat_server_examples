@@ -7,8 +7,15 @@
     <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
     <title id="titleId" itsnat:nocache="true">Tutorial: Single Page Interface STATELESS SEO Compatible Web Site With ItsNat</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script type="text/javascript" src="js/spi_bookmarking.js?timestamp=2015-08-11_01"></script>
+    <script type="text/javascript" src="js/spi_hashbang.js?timestamp=2015-08-11_01"></script>
     <script type="text/javascript">
+    function removeById(id)
+    {
+        var elem = document.getElementById(id);
+        if (!elem) return;
+        elem.parentNode.removeChild(elem);
+    }
+    
     function setState(state_name,state_secondary_name)
     {
         if (typeof document.getItsNatDoc == "undefined") return; // Too soon, page is not fully loaded        

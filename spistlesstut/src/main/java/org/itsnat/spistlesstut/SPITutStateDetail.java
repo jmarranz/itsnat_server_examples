@@ -32,7 +32,7 @@ public class SPITutStateDetail extends SPIState
         else
         {
             ClientDocument clientDoc = getItsNatHTMLDocument().getClientDocumentOwner();
-            clientDoc.addCodeToSend("window.spiSite.removeById('detailContentId');");
+            clientDoc.addCodeToSend("removeById('detailContentId');");
                       
             detailMoreLink.setTextContent("More Detail");   
             detailMoreLink.setAttribute("action","moreDetail");            

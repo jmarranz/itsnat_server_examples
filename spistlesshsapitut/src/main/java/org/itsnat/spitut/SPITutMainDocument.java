@@ -131,7 +131,7 @@ public class SPITutMainDocument implements EventListener
         {
             ClientDocument clientDoc = itsNatDoc.getClientDocumentOwner();
             String contentParentRef = clientDoc.getScriptUtil().getNodeReference(contentParentElem);            
-            clientDoc.addCodeToSend("removeChildren(" + contentParentRef + ");");  // ".innerHTML = '';"
+            clientDoc.addCodeToSend("window.spiSite.removeChildren(" + contentParentRef + ");");  // ".innerHTML = '';"
         }
         
         //ItsNatDOMUtil.removeAllChildren(contentParentElem);

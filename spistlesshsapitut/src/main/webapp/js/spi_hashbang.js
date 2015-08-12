@@ -57,7 +57,9 @@ function SPISite()
     this.detectURLStateChange = detectURLStateChange;
     this.detectURLStateChangeCB = detectURLStateChangeCB;
     this.setStateInURL = setStateInURL;
+    this.removeChildren = removeChildren;
     this.onBackForward = null; // Public, user defined
+
 
     this.firstTime = true;
     this.initialURLWithState = null;
@@ -138,6 +140,11 @@ function SPISite()
         else try { window.location.reload(true); }
              catch(ex) { window.location = window.location; }
     }
+        
+    function removeChildren(node) // used by spistless
+    {
+        while(node.firstChild) { var child = node.firstChild; node.removeChild(child); }; // Altnernative: node.innerHTML = ""
+    }    
 }
 
 window.spiSite = new SPISite();

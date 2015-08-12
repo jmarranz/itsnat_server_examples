@@ -57,7 +57,6 @@ function SPISite()
     this.detectURLStateChange = detectURLStateChange;
     this.detectURLStateChangeCB = detectURLStateChangeCB;
     this.setStateInURL = setStateInURL;
-    this.removeById = removeById;
     this.removeChildren = removeChildren;
     this.onBackForward = null; // Public, user defined
 
@@ -141,15 +140,8 @@ function SPISite()
         else try { window.location.reload(true); }
              catch(ex) { window.location = window.location; }
     }
-    
-    function removeById(id)
-    {
-        var elem = document.getElementById(id);
-        if (!elem) return;
-        elem.parentNode.removeChild(elem);
-    }
-    
-    function removeChildren(node)
+        
+    function removeChildren(node) // used by spistless
     {
         while(node.firstChild) { var child = node.firstChild; node.removeChild(child); }; // Altnernative: node.innerHTML = ""
     }    
