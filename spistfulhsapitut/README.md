@@ -1,7 +1,7 @@
-Single Page Interface SEO Compatible Web Site With ItsNat Using History API
+Single Page Interface SEO Compatible Web Site With ItsNat STATEFUL Using History API
 --------------------------------------------
 
-Source code of the tutorial: Single Page Interface SEO Compatible Web Site With ItsNat Using History API
+Source code of the tutorial: Single Page Interface SEO Compatible Web Site With ItsNat STATEFUL Using History API
 
 Shows how to build singe page interface web sites with the same capabilities as page based
 like bookmarking, SEO, JavaScript disabled and visit counters like Google Analytics.
@@ -16,5 +16,10 @@ supported by ItsNat framework.
 
 Online explanation of this web application is in ItsNat website.
 
-http://www.itsnat.org/#!st=support.tutorial.spi_hist_api_site
+http://www.itsnat.org/#!st=support.tutorial.spi_stful_hsapi
+
+Online demo:
+
+http://www.innowhere.com/spistfulhsapitut
+
 

@@ -1,5 +1,5 @@
 
-package org.itsnat.spistfullhashbangtut;
+package org.itsnat.spistfulhashbangtut;
 
 import org.itsnat.core.ClientDocument;
 import org.itsnat.core.event.ItsNatEvent;

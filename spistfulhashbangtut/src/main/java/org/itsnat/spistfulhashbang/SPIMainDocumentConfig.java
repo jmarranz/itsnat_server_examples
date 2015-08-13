@@ -1,4 +1,4 @@
-package org.itsnat.spistfullhashbang;
+package org.itsnat.spistfulhashbang;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,12 +1,12 @@
 
-package org.itsnat.spistfullhashbangtut;
+package org.itsnat.spistfulhashbangtut;
 
-import org.itsnat.spistfullhashbang.SPIState;
+import org.itsnat.spistfulhashbang.SPIState;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
 import org.itsnat.core.http.ItsNatHttpServletResponse;
-import org.itsnat.spistfullhashbang.SPIMainDocument;
-import org.itsnat.spistfullhashbang.SPIMainDocumentConfig;
-import org.itsnat.spistfullhashbang.SPIStateDescriptor;
+import org.itsnat.spistfulhashbang.SPIMainDocument;
+import org.itsnat.spistfulhashbang.SPIMainDocumentConfig;
+import org.itsnat.spistfulhashbang.SPIStateDescriptor;
 import org.w3c.dom.Element;
 
 public class SPITutMainDocument extends SPIMainDocument

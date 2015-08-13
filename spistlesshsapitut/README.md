@@ -1,7 +1,7 @@
-Single Page Interface *Stateless* SEO Compatible Web Site With ItsNat Using History API
+Single Page Interface SEO Compatible Web Site With ItsNat STATELESS Using History API
 --------------------------------------------
 
-Source code of the tutorial: Single Page Interface *Stateless* SEO Compatible Web Site With ItsNat Using History API
+Source code of the tutorial: Single Page Interface SEO Compatible Web Site With ItsNat STATELESS Using History API
 
 Shows how to build *stateless* (web session is not used) single page interface web sites with the same capabilities as page based
 like bookmarking, SEO, JavaScript disabled and visit counters like Google Analytics.
@@ -16,5 +16,8 @@ supported by ItsNat framework.
 
 Online explanation of this web application is in ItsNat website.
 
-http://www.itsnat.org/#!st=support.tutorial.spi_stateless_hist_api_site
+http://www.itsnat.org/#!st=support.tutorial.spi_stless_hsapi
 
+Online demo:
+
+http://www.innowhere.com/spistlesshsapitut

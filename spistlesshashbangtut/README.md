@@ -1,7 +1,7 @@
-Single Page Interface *Stateless* SEO Compatible Web Site With ItsNat Using Hashbangs
+Single Page Interface SEO Compatible Web Site With ItsNat STATELESS Using HASHBANGS
 --------------------------------------------
 
-Source code of the tutorial: Single Page Interface *Stateless* SEO Compatible Web Site With ItsNat Using Hashbangs
+Source code of the tutorial: Single Page Interface *Stateless* SEO Compatible Web Site With ItsNat STATELESS Using HASHBANGS
 
 Shows how to build *stateless* (web session is not used) single page interface web sites with the same capabilities as page based
 like bookmarking, SEO, JavaScript disabled and visit counters like Google Analytics.
@@ -15,5 +15,9 @@ supported by ItsNat framework.
 
 Online explanation of this web application is in ItsNat website.
 
-http://www.itsnat.org/#!st=support.tutorial.spi_stateless_site
+http://www.itsnat.org/#!st=support.tutorial.spi_stless_hashbang
+
+Online demo:
+
+http://www.innowhere.com/spistlesshashbangtut
 

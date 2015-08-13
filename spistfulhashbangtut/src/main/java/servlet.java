@@ -6,9 +6,9 @@ import org.itsnat.core.ItsNatServletContext;
 import org.itsnat.core.http.HttpServletWrapper;
 import org.itsnat.core.http.ItsNatHttpServlet;
 import org.itsnat.core.tmpl.ItsNatDocumentTemplate;
-import org.itsnat.spistfullhashbangtut.SPITutGlobalEventListener;
-import org.itsnat.spistfullhashbangtut.SPITutGlobalLoadRequestListener;
-import org.itsnat.spistfullhashbangtut.SPITutMainLoadRequestListener;
+import org.itsnat.spistfulhashbangtut.SPITutGlobalEventListener;
+import org.itsnat.spistfulhashbangtut.SPITutGlobalLoadRequestListener;
+import org.itsnat.spistfulhashbangtut.SPITutMainLoadRequestListener;
 
 public class servlet extends HttpServletWrapper
 {

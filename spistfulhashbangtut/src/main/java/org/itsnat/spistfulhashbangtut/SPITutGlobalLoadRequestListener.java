@@ -1,4 +1,4 @@
-package org.itsnat.spistfullhashbangtut;
+package org.itsnat.spistfulhashbangtut;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;

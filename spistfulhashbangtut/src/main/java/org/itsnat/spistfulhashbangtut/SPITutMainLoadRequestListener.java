@@ -1,13 +1,13 @@
 
-package org.itsnat.spistfullhashbangtut;
+package org.itsnat.spistfulhashbangtut;
 
 import org.itsnat.core.ItsNatServletRequest;
 import org.itsnat.core.ItsNatServletResponse;
 import org.itsnat.core.event.ItsNatServletRequestListener;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
 import org.itsnat.core.http.ItsNatHttpServletResponse;
-import org.itsnat.spistfullhashbang.SPIMainDocumentConfig;
-import org.itsnat.spistfullhashbang.SPIStateDescriptor;
+import org.itsnat.spistfulhashbang.SPIMainDocumentConfig;
+import org.itsnat.spistfulhashbang.SPIStateDescriptor;
 import org.w3c.dom.Document;
 import org.w3c.dom.html.HTMLTitleElement;
 

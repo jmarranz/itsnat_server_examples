@@ -15,5 +15,9 @@ supported by ItsNat framework.
 
 Online explanation of this web application is in ItsNat website.
 
-http://www.itsnat.org/#!st=support.tutorial.spi_site
+http://www.itsnat.org/#!st=support.tutorial.spi_stful_hashbang
+
+Online demo:
+
+http://www.innowhere.com/spistfulhashbangtut
 

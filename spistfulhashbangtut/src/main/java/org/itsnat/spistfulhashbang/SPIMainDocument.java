@@ -1,5 +1,5 @@
 
-package org.itsnat.spistfullhashbang;
+package org.itsnat.spistfulhashbang;
 
 import javax.servlet.http.HttpServletRequest;
 import org.itsnat.core.ItsNatServlet;

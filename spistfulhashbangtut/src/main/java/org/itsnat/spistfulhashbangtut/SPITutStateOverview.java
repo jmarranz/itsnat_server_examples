@@ -1,8 +1,8 @@
 
-package org.itsnat.spistfullhashbangtut;
+package org.itsnat.spistfulhashbangtut;
 
-import org.itsnat.spistfullhashbang.SPIState;
-import org.itsnat.spistfullhashbang.SPIStateDescriptor;
+import org.itsnat.spistfulhashbang.SPIState;
+import org.itsnat.spistfulhashbang.SPIStateDescriptor;
 import org.w3c.dom.Element;
 import org.w3c.dom.events.Event;
 import org.w3c.dom.events.EventListener;
