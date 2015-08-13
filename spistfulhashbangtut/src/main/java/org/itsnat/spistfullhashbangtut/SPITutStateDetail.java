@@ -1,0 +1,58 @@
+
+package org.itsnat.spistfullhashbangtut;
+
+import org.itsnat.spistfullhashbang.SPIState;
+import org.itsnat.core.domutil.ItsNatTreeWalker;
+import org.itsnat.spistfullhashbang.SPIStateDescriptor;
+import org.w3c.dom.DocumentFragment;
+import org.w3c.dom.Element;
+import org.w3c.dom.events.Event;
+import org.w3c.dom.events.EventListener;
+import org.w3c.dom.events.EventTarget;
+import org.w3c.dom.html.HTMLDocument;
+
+public class SPITutStateDetail extends SPIState implements EventListener
+{
+    protected Element detailMoreLink;
+    protected Element detailMoreElem;
+    protected boolean inserted = false;
+    
+    public SPITutStateDetail(SPITutMainDocument spiTutDoc,SPIStateDescriptor stateDesc)
+    {
+        super(spiTutDoc,stateDesc,true);
+
+        HTMLDocument doc = getItsNatHTMLDocument().getHTMLDocument();
+        this.detailMoreLink = doc.getElementById("detailMoreId");
+        ((EventTarget)detailMoreLink).addEventListener("click",this,false);
+    }
+
+    @Override
+    public void dispose()
+    {
+        ((EventTarget)detailMoreLink).removeEventListener("click",this,false);
+    }
+
+    @Override
+    public void handleEvent(Event evt)
+    {
+        if (detailMoreElem == null)
+        {
+            DocumentFragment frag = spiTutDoc.loadDocumentFragment("detail.more");
+            this.detailMoreElem = ItsNatTreeWalker.getFirstChildElement(frag);
+        }
+
+        if (!inserted)
+        {
+            Element contentParentElem = spiTutDoc.getContentParentElement();
+            contentParentElem.appendChild(detailMoreElem);
+            detailMoreLink.setTextContent("Hide");
+            this.inserted = true;
+        }
+        else
+        {
+            detailMoreElem.getParentNode().removeChild(detailMoreElem);            
+            detailMoreLink.setTextContent("More Detail");
+            this.inserted = false;
+        }
+    }
+}
