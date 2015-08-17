@@ -36,17 +36,17 @@ public abstract class SPIMainDocument
         {
             String stateName;
             HttpServletRequest servReq = request.getHttpServletRequest();
-            String servPath = servReq.getServletPath();
+            String reqURI = servReq.getRequestURI();
 
-            if (servPath == null || servPath.equals("/") || servPath.equals("/servlet") || !servPath.startsWith("/"))
+            if (!reqURI.endsWith("/"))
             {
-                stateName = config.defaultStateName;
+                // Pretty URL case  
+                int pos = reqURI.lastIndexOf("/");
+                stateName = reqURI.substring(pos + 1); // "/name" => "name"             
             }
-            else
-            {
-                // Pretty URL case
-                stateName = servPath.substring(1); // "/name" => "name"
-                stateName = "".equals(stateName) ? config.defaultStateName : stateName;
+            else  
+            {  
+                stateName = config.defaultStateName;
             }
 
             changeState(stateName);

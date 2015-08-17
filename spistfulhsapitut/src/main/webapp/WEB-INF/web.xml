@@ -15,18 +15,12 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>   
 -->   
+   
     <servlet-mapping>
         <servlet-name>servlet</servlet-name>
-        <url-pattern>/overview</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>servlet</servlet-name>
-        <url-pattern>/overview-popup</url-pattern>
-    </servlet-mapping>          
-    <servlet-mapping>
-        <servlet-name>servlet</servlet-name>
-        <url-pattern>/detail</url-pattern>
-    </servlet-mapping>     
+        <url-pattern>/site/*</url-pattern>
+    </servlet-mapping>   
+            
     <session-config>
         <session-timeout>
             30

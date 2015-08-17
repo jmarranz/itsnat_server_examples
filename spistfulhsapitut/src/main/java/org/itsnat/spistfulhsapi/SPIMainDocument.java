@@ -43,26 +43,26 @@ public abstract class SPIMainDocument
                 ItsNatHttpServletResponse response = (ItsNatHttpServletResponse)itsNatEvt.getItsNatServletResponse();
                 String name = (String)itsNatEvt.getExtraParam("name");
                 changeState(name,request,response);
-            }        
+            }
         };
         itsNatDoc.addUserEventListener(null,"setState", listener);
 
         String stateName;
         HttpServletRequest servReq = request.getHttpServletRequest();
-        String servPath = servReq.getServletPath();
+        String reqURI = servReq.getRequestURI();
 
-        if (servPath == null || servPath.equals("/") || servPath.equals("/servlet") || !servPath.startsWith("/"))  
-        {  
+        if (!reqURI.endsWith("/"))
+        {
+            // Pretty URL case
+            int pos = reqURI.lastIndexOf("/");
+            stateName = reqURI.substring(pos + 1); // "/name" => "name"
+        }
+        else
+        {
             stateName = config.defaultStateName;
-        } 
-        else  
-        {  
-            // Pretty URL case  
-            stateName = servPath.substring(1); // "/name" => "name"  
-            stateName = "".equals(stateName) ? config.defaultStateName : stateName; 
-        }             
-        
-        
+        }
+
+
         changeState(stateName,request,response);
     }
 
@@ -118,8 +118,8 @@ public abstract class SPIMainDocument
         if (stateDesc == null)
         {
             return changeState(config.notFoundStateName,request,response);
-        }        
-        
+        }
+
         // Cleaning previous state:
         if (currentState != null)
         {
@@ -132,17 +132,17 @@ public abstract class SPIMainDocument
         // Setting new state:
         changeActiveMenu(stateName);
 
-        String fragmentName = stateDesc.isMainLevel() ? stateName : getFirstLevelStateName(stateName);        
+        String fragmentName = stateDesc.isMainLevel() ? stateName : getFirstLevelStateName(stateName);
         DocumentFragment frag = loadDocumentFragment(fragmentName);
         config.contentParentElem.appendChild(frag);
 
         this.currentState = createSPIState(stateDesc,request,response);
-        
+
         return currentState;
     }
 
     public abstract SPIState createSPIState(SPIStateDescriptor stateDesc,ItsNatHttpServletRequest request,ItsNatHttpServletResponse response);
-    
+
     public void registerState(SPIState state)
     {
         setStateTitle(state.getStateTitle());
@@ -164,9 +164,9 @@ public abstract class SPIMainDocument
         this.currentMenuItemElem = config.menuElemMap.get(mainMenuItemName);
 
         Element currActiveMenuItemElem = this.currentMenuItemElem;
-        
+
         onChangeActiveMenu(prevActiveMenuItemElem,currActiveMenuItemElem,mainMenuItemName);
     }
-    
+
     public abstract void onChangeActiveMenu(Element prevActiveMenuItemElem,Element currActiveMenuItemElem,String mainMenuItemName);
 }
