@@ -28,6 +28,7 @@ public class SPITutMainLoadRequestListener implements ItsNatServletRequestListen
               .addSPIStateDescriptor(new SPIStateDescriptor("overview-popup","Overview Popup",false))                
               .addSPIStateDescriptor(new SPIStateDescriptor("detail","Detail",true))                
               .addSPIStateDescriptor(new SPIStateDescriptor("not_found","Not Found",true))                  
+                  // Remember to add fundamental (that is bookmarkable) states also to web.xml
               .setDefaultStateName("overview")
               .setNotFoundStateName("not_found");        
         
