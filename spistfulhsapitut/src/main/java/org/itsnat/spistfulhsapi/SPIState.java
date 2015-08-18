@@ -5,26 +5,26 @@ import org.itsnat.core.html.ItsNatHTMLDocument;
 
 public abstract class SPIState
 {
-    protected SPIMainDocument spiTutDoc;
+    protected SPIMainDocument spiDoc;
     protected SPIStateDescriptor stateDesc;
     
-    public SPIState(SPIMainDocument spiTutDoc,SPIStateDescriptor stateDesc,boolean register)
+    public SPIState(SPIMainDocument spiDoc,SPIStateDescriptor stateDesc,boolean register)
     {
-        this.spiTutDoc = spiTutDoc;
+        this.spiDoc = spiDoc;
         this.stateDesc = stateDesc;
         
         if (register)
-            spiTutDoc.registerState(this);
+            spiDoc.registerState(this);
     }
 
     public SPIMainDocument getSPIMainDocument()
     {
-        return spiTutDoc;
+        return spiDoc;
     }
 
     public ItsNatHTMLDocument getItsNatHTMLDocument()
     {
-        return spiTutDoc.getItsNatHTMLDocument();
+        return spiDoc.getItsNatHTMLDocument();
     }
 
     public String getStateName()

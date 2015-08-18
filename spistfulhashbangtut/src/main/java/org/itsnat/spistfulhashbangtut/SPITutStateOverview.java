@@ -48,7 +48,7 @@ public class SPITutStateOverview extends SPIState implements EventListener
     {
         this.popup = null;
         ((EventTarget)popupElem).addEventListener("click",this,false); // Restores
-        spiTutDoc.registerState(this);
+        spiDoc.registerState(this);
     }
     
 }

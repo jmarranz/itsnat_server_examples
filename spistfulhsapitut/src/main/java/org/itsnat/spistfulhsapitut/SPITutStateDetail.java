@@ -49,13 +49,13 @@ public class SPITutStateDetail extends SPIState implements EventListener
     {
         if (detailMoreElem == null)
         {
-            DocumentFragment frag = spiTutDoc.loadDocumentFragment("detail-more");
+            DocumentFragment frag = spiDoc.loadDocumentFragment("detail-more");
             this.detailMoreElem = ItsNatTreeWalker.getFirstChildElement(frag);
         }
 
         if (!inserted)
         {
-            Element contentParentElem = spiTutDoc.getContentParentElement();
+            Element contentParentElem = spiDoc.getContentParentElement();
             contentParentElem.appendChild(detailMoreElem);
             detailMoreLink.setTextContent("Hide");
             this.inserted = true;
