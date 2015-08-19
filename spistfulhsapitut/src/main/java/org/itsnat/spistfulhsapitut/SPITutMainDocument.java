@@ -49,7 +49,7 @@ public class SPITutMainDocument extends SPIMainDocument
     
 
     @Override
-    public void onChangeActiveMenu(Element prevActiveMenuItemElem,Element currActiveMenuItemElem,String mainMenuItemName)
+    public void onChangeActiveMenu(Element prevActiveMenuItemElem, Element currActiveMenuItemElem)
     {
         if (prevActiveMenuItemElem != null)
             prevActiveMenuItemElem.removeAttribute("class");

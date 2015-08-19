@@ -166,8 +166,8 @@ public abstract class SPIMainDocument
 
         Element currActiveMenuItemElem = this.currentMenuItemElem;
         
-        onChangeActiveMenu(prevActiveMenuItemElem,currActiveMenuItemElem,mainMenuItemName);
+        onChangeActiveMenu(prevActiveMenuItemElem,currActiveMenuItemElem);
     }
     
-    public abstract void onChangeActiveMenu(Element prevActiveMenuItemElem,Element currActiveMenuItemElem,String mainMenuItemName);
+    public abstract void onChangeActiveMenu(Element prevActiveMenuItemElem,Element currActiveMenuItemElem);
 }

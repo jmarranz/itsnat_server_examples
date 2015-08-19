@@ -27,18 +27,18 @@ public class servlet extends HttpServletWrapper
         itsNatServlet.addItsNatServletRequestListener(new SPITutGlobalLoadRequestListener());
 
         ItsNatDocumentTemplate docTemplate;
-        docTemplate = itsNatServlet.registerItsNatDocumentTemplate("main","text/html", pathPages + "main.html");
+        docTemplate = itsNatServlet.registerItsNatDocumentTemplate("main","text/html",pathPages + "main.html");
         docTemplate.addItsNatServletRequestListener(new SPITutMainLoadRequestListener());
         docTemplate.setEventsEnabled(false);
-        
-        docTemplate = itsNatServlet.registerItsNatDocumentTemplate("google_analytics","text/html", pathPages + "google_analytics.html");
+
+        docTemplate = itsNatServlet.registerItsNatDocumentTemplate("google_analytics","text/html",pathPages + "google_analytics.html");
         docTemplate.setScriptingEnabled(false);
 
         // Fragments
-        itsNatServlet.registerItsNatDocFragmentTemplate("not_found","text/html", pathFragments + "not_found.html");
-        itsNatServlet.registerItsNatDocFragmentTemplate("overview","text/html",  pathFragments + "overview.html");
-        itsNatServlet.registerItsNatDocFragmentTemplate("overview.popup","text/html", pathFragments + "overview_popup.html");
-        itsNatServlet.registerItsNatDocFragmentTemplate("detail","text/html", pathFragments + "detail.html");
-        itsNatServlet.registerItsNatDocFragmentTemplate("detail.more","text/html", pathFragments + "detail_more.html");
+        itsNatServlet.registerItsNatDocFragmentTemplate("not_found","text/html",pathFragments + "not_found.html");
+        itsNatServlet.registerItsNatDocFragmentTemplate("overview","text/html",pathFragments + "overview.html");
+        itsNatServlet.registerItsNatDocFragmentTemplate("overview.popup","text/html",pathFragments + "overview_popup.html");
+        itsNatServlet.registerItsNatDocFragmentTemplate("detail","text/html",pathFragments + "detail.html");
+        itsNatServlet.registerItsNatDocFragmentTemplate("detail.more","text/html",pathFragments + "detail_more.html");
     }
 }
