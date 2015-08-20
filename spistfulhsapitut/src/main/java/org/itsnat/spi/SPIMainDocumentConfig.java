@@ -1,4 +1,4 @@
-package org.itsnat.spistfulhashbang;
+package org.itsnat.spi;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,10 +19,20 @@ public class SPIMainDocumentConfig
     protected String defaultStateName;
     protected String notFoundStateName;
 
+    public HTMLTitleElement getTitleElement()
+    {
+        return titleElem;
+    }
+
     public SPIMainDocumentConfig setTitleElement(Element titleElem)
     {
         this.titleElem = (HTMLTitleElement)titleElem;
         return this;
+    }
+
+    public Element getContentParentElement()
+    {
+        return contentParentElem;
     }
 
     public SPIMainDocumentConfig setContentParentElement(Element contentParentElem)
@@ -31,10 +41,20 @@ public class SPIMainDocumentConfig
         return this;
     }
 
+    public Element getGoogleAnalyticsElement()
+    {
+        return googleAnalyticsElem;
+    }
+
     public SPIMainDocumentConfig setGoogleAnalyticsElement(Element googleAnalyticsElem)
     {
         this.googleAnalyticsElem = googleAnalyticsElem;
         return this;
+    }
+
+    public SPIStateDescriptor getSPIStateDescriptor(String stateName)
+    {
+        return stateMap.get(stateName);
     }
 
     public SPIMainDocumentConfig addSPIStateDescriptor(SPIStateDescriptor stateDesc)
@@ -44,16 +64,36 @@ public class SPIMainDocumentConfig
         return this;
     }
 
+    public Element getMenuElement(String stateName)
+    {
+        return menuElemMap.get(stateName);
+    }
+
+    public Map<String,Element> getMenuElementMap()
+    {
+        return menuElemMap;
+    }
+
     public SPIMainDocumentConfig addMenuElement(String stateName,Element menuElem)
     {
         menuElemMap.put(stateName,menuElem);
         return this;
     }
 
+    public String getDefaultStateName()
+    {
+        return defaultStateName;
+    }
+
     public SPIMainDocumentConfig setDefaultStateName(String defaultStateName)
     {
         this.defaultStateName = defaultStateName;
         return this;
+    }
+
+    public String getNotFoundStateName()
+    {
+        return notFoundStateName;
     }
 
     public SPIMainDocumentConfig setNotFoundStateName(String notFoundStateName)
@@ -77,8 +117,8 @@ public class SPIMainDocumentConfig
         if (notFoundStateName == null) throw new RuntimeException("Missing notFoundStateName");
 
         if (stateMap.get(defaultStateName) == null) throw new RuntimeException("Missing state declaration for default state: " + defaultStateName);
-        if (stateMap.get(notFoundStateName) == null) throw new RuntimeException("Missing state declaration for not found state: " + notFoundStateName);        
-        
+        if (stateMap.get(notFoundStateName) == null) throw new RuntimeException("Missing state declaration for not found state: " + notFoundStateName);
+
         return this;
     }
 }

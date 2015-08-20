@@ -1,6 +1,7 @@
 
 package org.itsnat.spistlesshashbang;
 
+import org.itsnat.spi.SPIStateDescriptor;
 import org.itsnat.core.html.ItsNatHTMLDocument;
 
 public abstract class SPIState

@@ -6,7 +6,7 @@ import org.itsnat.core.domutil.ItsNatTreeWalker;
 import org.itsnat.core.html.ItsNatHTMLDocument;
 import org.itsnat.spistfulhsapi.SPIMainDocument;
 import org.itsnat.spistfulhsapi.SPIState;
-import org.itsnat.spistfulhsapi.SPIStateDescriptor;
+import org.itsnat.spi.SPIStateDescriptor;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.events.Event;

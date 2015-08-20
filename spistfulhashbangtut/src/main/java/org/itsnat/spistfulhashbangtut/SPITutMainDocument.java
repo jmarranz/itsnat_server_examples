@@ -5,8 +5,8 @@ import org.itsnat.spistfulhashbang.SPIState;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
 import org.itsnat.core.http.ItsNatHttpServletResponse;
 import org.itsnat.spistfulhashbang.SPIMainDocument;
-import org.itsnat.spistfulhashbang.SPIMainDocumentConfig;
-import org.itsnat.spistfulhashbang.SPIStateDescriptor;
+import org.itsnat.spi.SPIMainDocumentConfig;
+import org.itsnat.spi.SPIStateDescriptor;
 import org.w3c.dom.Element;
 
 public class SPITutMainDocument extends SPIMainDocument

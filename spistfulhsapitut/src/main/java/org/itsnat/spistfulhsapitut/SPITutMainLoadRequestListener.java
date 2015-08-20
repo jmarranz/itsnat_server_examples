@@ -6,8 +6,8 @@ import org.itsnat.core.ItsNatServletResponse;
 import org.itsnat.core.event.ItsNatServletRequestListener;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
 import org.itsnat.core.http.ItsNatHttpServletResponse;
-import org.itsnat.spistfulhsapi.SPIMainDocumentConfig;
-import org.itsnat.spistfulhsapi.SPIStateDescriptor;
+import org.itsnat.spi.SPIMainDocumentConfig;
+import org.itsnat.spi.SPIStateDescriptor;
 import org.w3c.dom.Document;
 import org.w3c.dom.html.HTMLTitleElement;
 

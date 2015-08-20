@@ -1,6 +1,8 @@
 
 package org.itsnat.spistfulhashbang;
 
+import org.itsnat.spi.SPIMainDocumentConfig;
+import org.itsnat.spi.SPIStateDescriptor;
 import javax.servlet.http.HttpServletRequest;
 import org.itsnat.core.ItsNatServlet;
 import org.itsnat.core.domutil.ItsNatDOMUtil;
@@ -30,8 +32,8 @@ public abstract class SPIMainDocument
         this.config = config;
         this.itsNatDoc = (ItsNatHTMLDocument)request.getItsNatDocument();
 
-        this.title = config.titleElem.getText(); // Initial value
-        this.googleAnalyticsIFrameURL = config.googleAnalyticsElem.getAttribute("src");  // Initial value
+        this.title = config.getTitleElement().getText(); // Initial value
+        this.googleAnalyticsIFrameURL = config.getGoogleAnalyticsElement().getAttribute("src");  // Initial value
 
         EventListener listener = new EventListener()
         {
@@ -54,13 +56,13 @@ public abstract class SPIMainDocument
             if (stateName.startsWith("st=")) // st means "state"
                 stateName = stateName.substring("st=".length(), stateName.length());
             else // Wrong format
-                stateName = config.defaultStateName;
+                stateName = config.getDefaultStateName();
         }
         else
         {
             stateName = servReq.getParameter("st");
             if (stateName == null)
-                stateName = config.defaultStateName;
+                stateName = config.getDefaultStateName();
         }
 
         changeState(stateName,request,response);
@@ -73,21 +75,21 @@ public abstract class SPIMainDocument
 
     public SPIStateDescriptor getSPIStateDescriptor(String stateName)
     {
-        return config.stateMap.get(stateName);
+        return config.getSPIStateDescriptor(stateName);
     }
     
     public void setStateTitle(String stateTitle)
     {
         String pageTitle = stateTitle + " - " + title;
         if (itsNatDoc.isLoading())
-            config.titleElem.setText(pageTitle);
+            config.getTitleElement().setText(pageTitle);
         else
             itsNatDoc.addCodeToSend("document.title = \"" + pageTitle + "\";\n");
     }
 
     public Element getContentParentElement()
     {
-        return config.contentParentElem;
+        return config.getContentParentElement();
     }
 
     public ItsNatDocFragmentTemplate getFragmentTemplate(String name)
@@ -114,10 +116,10 @@ public abstract class SPIMainDocument
 
     public SPIState changeState(String stateName,ItsNatHttpServletRequest request,ItsNatHttpServletResponse response)
     {
-        SPIStateDescriptor stateDesc = config.stateMap.get(stateName);
+        SPIStateDescriptor stateDesc = config.getSPIStateDescriptor(stateName);
         if (stateDesc == null)
         {
-            return changeState(config.notFoundStateName,request,response);
+            return changeState(config.getNotFoundStateName(),request,response);
         }        
 
         // Cleaning previous state:
@@ -127,7 +129,7 @@ public abstract class SPIMainDocument
             this.currentState = null;
         }
 
-        ItsNatDOMUtil.removeAllChildren(config.contentParentElem);
+        ItsNatDOMUtil.removeAllChildren(config.getContentParentElement());
 
         // Setting new state:
         changeActiveMenu(stateName);
@@ -135,7 +137,7 @@ public abstract class SPIMainDocument
         String fragmentName = stateDesc.isMainLevel() ? stateName : getFirstLevelStateName(stateName);
         
         DocumentFragment frag = loadDocumentFragment(fragmentName);
-        config.contentParentElem.appendChild(frag);
+        config.getContentParentElement().appendChild(frag);
 
         this.currentState = createSPIState(stateDesc,request,response);
         
@@ -151,7 +153,7 @@ public abstract class SPIMainDocument
         itsNatDoc.addCodeToSend("spiSite.setStateInURL(\"" + stateName + "\");");
         // googleAnalyticsElem.setAttribute("src",googleAnalyticsIFrameURL + stateName);
         // http://stackoverflow.com/questions/24407573/how-can-i-make-an-iframe-not-save-to-history-in-chrome
-        String jsIFrameRef = itsNatDoc.getScriptUtil().getNodeReference(config.googleAnalyticsElem);
+        String jsIFrameRef = itsNatDoc.getScriptUtil().getNodeReference(config.getGoogleAnalyticsElement());
         itsNatDoc.addCodeToSend("var elem = " + jsIFrameRef + "; try{ elem.contentWindow.location.replace('" + googleAnalyticsIFrameURL + stateName + "'); } catch(e) {}");
     }
 
@@ -162,7 +164,7 @@ public abstract class SPIMainDocument
 
         Element prevActiveMenuItemElem = this.currentMenuItemElem;
 
-        this.currentMenuItemElem = config.menuElemMap.get(mainMenuItemName);
+        this.currentMenuItemElem = config.getMenuElement(mainMenuItemName);
 
         Element currActiveMenuItemElem = this.currentMenuItemElem;
         

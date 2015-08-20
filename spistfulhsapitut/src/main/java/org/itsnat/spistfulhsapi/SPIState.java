@@ -1,6 +1,7 @@
 
 package org.itsnat.spistfulhsapi;
 
+import org.itsnat.spi.SPIStateDescriptor;
 import org.itsnat.core.html.ItsNatHTMLDocument;
 
 public abstract class SPIState

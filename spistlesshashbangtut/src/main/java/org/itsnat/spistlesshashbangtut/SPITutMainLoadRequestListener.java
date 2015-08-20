@@ -6,8 +6,8 @@ import org.itsnat.core.ItsNatServletResponse;
 import org.itsnat.core.event.ItsNatServletRequestListener;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
 import org.itsnat.core.http.ItsNatHttpServletResponse;
-import org.itsnat.spistlesshashbang.SPIMainDocumentConfig;
-import org.itsnat.spistlesshashbang.SPIStateDescriptor;
+import org.itsnat.spi.SPIMainDocumentConfig;
+import org.itsnat.spi.SPIStateDescriptor;
 import org.w3c.dom.Document;
 import org.w3c.dom.html.HTMLTitleElement;
 
@@ -32,6 +32,7 @@ public class SPITutMainLoadRequestListener implements ItsNatServletRequestListen
               .setNotFoundStateName("not_found");
                
                 
-        new SPITutMainDocument((ItsNatHttpServletRequest)request,(ItsNatHttpServletResponse)response,config);        
+        new SPITutMainDocument((ItsNatHttpServletRequest)request,(ItsNatHttpServletResponse)response,config);
     }
 }
+

@@ -2,7 +2,7 @@
 package org.itsnat.spistlesshsapitut;
 
 import org.itsnat.spistlesshsapi.SPIState;
-import org.itsnat.spistlesshsapi.SPIStateDescriptor;
+import org.itsnat.spi.SPIStateDescriptor;
 
 public class SPITutStateOverview extends SPIState
 {

@@ -1,13 +1,13 @@
 package org.itsnat.spistlesshashbangtut;
 
+import org.itsnat.spistlesshashbang.SPIMainDocument;
 import org.itsnat.comp.ItsNatComponentManager;
 import org.itsnat.comp.layer.ItsNatModalLayer;
 import org.itsnat.core.ClientDocument;
 import org.itsnat.core.domutil.ItsNatTreeWalker;
 import org.itsnat.core.html.ItsNatHTMLDocument;
-import org.itsnat.spistlesshashbang.SPIMainDocument;
 import org.itsnat.spistlesshashbang.SPIState;
-import org.itsnat.spistlesshashbang.SPIStateDescriptor;
+import org.itsnat.spi.SPIStateDescriptor;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.html.HTMLBodyElement;

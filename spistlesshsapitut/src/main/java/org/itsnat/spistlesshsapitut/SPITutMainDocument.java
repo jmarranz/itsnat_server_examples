@@ -5,9 +5,9 @@ import org.itsnat.core.event.ItsNatEventDOMStateless;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
 import org.itsnat.core.http.ItsNatHttpServletResponse;
 import org.itsnat.spistlesshsapi.SPIMainDocument;
-import org.itsnat.spistlesshsapi.SPIMainDocumentConfig;
+import org.itsnat.spi.SPIMainDocumentConfig;
 import org.itsnat.spistlesshsapi.SPIState;
-import org.itsnat.spistlesshsapi.SPIStateDescriptor;
+import org.itsnat.spi.SPIStateDescriptor;
 import org.w3c.dom.Element;
 
 public class SPITutMainDocument extends SPIMainDocument
