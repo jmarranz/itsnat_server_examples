@@ -21,7 +21,6 @@ public abstract class SPIMainDocument
     protected ItsNatHTMLDocument itsNatDoc;
     protected SPIMainDocumentConfig config;
     protected String title;
-    protected SPIState currentState;
     protected String googleAnalyticsIFrameURL;
 
     public SPIMainDocument(ItsNatHttpServletRequest request, ItsNatHttpServletResponse response,SPIMainDocumentConfig config)
@@ -146,9 +145,7 @@ public abstract class SPIMainDocument
         DocumentFragment frag = loadDocumentFragment(fragmentName);
         config.getContentParentElement().appendChild(frag);
 
-        this.currentState = createSPIState(stateDesc,itsNatEvt);
-        
-        return currentState;
+        return createSPIState(stateDesc,itsNatEvt);
     }
     
     public abstract SPIState createSPIState(SPIStateDescriptor stateDesc,ItsNatEventDOMStateless itsNatEvt);
