@@ -67,7 +67,7 @@ function SPISite()
     this.onBackForward = null; // Public, user defined
 
     this.firstTime = true;
-    this.href = null;
+    this.url = null;
     this.disabled = false;
 
     this.load();
@@ -84,7 +84,7 @@ function SPISite()
         var currLoc = new LocationState();
         currLoc.setStateName(stateName);
             
-        this.href = currLoc.getURL();
+        this.url = currLoc.getURL();
 
         if (!this.firstTime) return;
         this.firstTime = false;
@@ -110,10 +110,10 @@ function SPISite()
     {
         // Detecting when only the state of the reference part of the URL changes
         var currLoc = new LocationState();
-        if (!currLoc.isStateNameChanged(this.href)) return;
+        if (!currLoc.isStateNameChanged(this.url)) return;
             
         // Only changed the state in reference part
-        this.href = currLoc.getURL();
+        this.url = currLoc.getURL();
 
         var stateName = currLoc.getStateName();        
         if (this.onBackForward) this.onBackForward(stateName);
