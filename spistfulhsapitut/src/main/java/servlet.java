@@ -13,6 +13,7 @@ import org.itsnat.spistfulhsapitut.SPITutMainLoadRequestListener;
 
 public class servlet extends HttpServletWrapper
 {
+    @Override
     public void init(ServletConfig config) throws ServletException
     {
         super.init(config);
@@ -35,12 +36,10 @@ public class servlet extends HttpServletWrapper
         itsNatServlet.addItsNatServletRequestListener(new SPITutGlobalLoadRequestListener());
 
         ItsNatDocumentTemplate docTemplate;
-        docTemplate = itsNatServlet.registerItsNatDocumentTemplate("main","text/html",
-                    pathPages + "main.html");
+        docTemplate = itsNatServlet.registerItsNatDocumentTemplate("main","text/html",pathPages + "main.html");
         docTemplate.addItsNatServletRequestListener(new SPITutMainLoadRequestListener());
 
-        docTemplate = itsNatServlet.registerItsNatDocumentTemplate("google_analytics","text/html",
-                    pathPages + "google_analytics.html");
+        docTemplate = itsNatServlet.registerItsNatDocumentTemplate("google_analytics","text/html",pathPages + "google_analytics.html");
         docTemplate.setScriptingEnabled(false);
 
         // Fragments

@@ -38,5 +38,4 @@ public class SPITutStateDetail extends SPIState
             detailMoreLink.setAttribute("action","moreDetail");            
         }
     }
-
 }

@@ -33,18 +33,6 @@ public class SPITutStateDetail extends SPIState implements EventListener
     }
 
     @Override
-    public String getStateTitle()
-    {
-        return "Detail";
-    }
-
-    @Override
-    public String getStateName()
-    {
-        return "detail";
-    }
-
-    @Override
     public void handleEvent(Event evt)
     {
         if (detailMoreElem == null)

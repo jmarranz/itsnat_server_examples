@@ -31,8 +31,8 @@ public class SPITutStateOverviewPopup extends SPIState implements EventListener
         super(parent.getSPIMainDocument(),stateDesc,true);
         this.parent = parent;
 
-        SPIMainDocument spiTutDoc = parent.getSPIMainDocument();
-        ItsNatHTMLDocument itsNatDoc = parent.getItsNatHTMLDocument();
+        SPIMainDocument spiTutDoc = getSPIMainDocument();
+        ItsNatHTMLDocument itsNatDoc = getItsNatHTMLDocument();
         HTMLDocument doc = itsNatDoc.getHTMLDocument();
         ItsNatComponentManager compMgr = itsNatDoc.getItsNatComponentManager();
         this.layer = compMgr.createItsNatModalLayer(null,false,1,0.5f,"black",null);
@@ -44,10 +44,10 @@ public class SPITutStateOverviewPopup extends SPIState implements EventListener
 
         ((EventTarget)container).addEventListener("click", this, false);
 
-        // itsNatDoc.addCodeToSend("try{ window.scroll(0,-1000); }catch(ex){}");
+        //itsNatDoc.addCodeToSend("try{ window.scroll(0,-1000); }catch(ex){}");
         // try/catch is used to prevent some mobile browser does not support it
     }
-   
+    
     @Override
     public void handleEvent(Event evt)
     {

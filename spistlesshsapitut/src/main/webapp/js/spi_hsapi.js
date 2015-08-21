@@ -67,7 +67,6 @@ function SPISite()
     this.onBackForward = null; // Public, user defined
 
     this.firstTime = true;
-    this.initialURLWithState = null;
     this.href = null;
     this.disabled = false;
 
