@@ -3,7 +3,7 @@ package org.itsnat.spistlesshsapitut;
 
 import org.itsnat.core.ClientDocument;
 import org.itsnat.core.domutil.ItsNatTreeWalker;
-import org.itsnat.spistlesshsapi.SPIState;
+import org.itsnat.spi.SPIState;
 import org.itsnat.spi.SPIStateDescriptor;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;

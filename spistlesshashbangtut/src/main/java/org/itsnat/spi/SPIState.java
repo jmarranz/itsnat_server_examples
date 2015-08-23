@@ -1,7 +1,6 @@
 
-package org.itsnat.spistlesshsapi;
+package org.itsnat.spi;
 
-import org.itsnat.spi.SPIStateDescriptor;
 import org.itsnat.core.html.ItsNatHTMLDocument;
 
 public abstract class SPIState

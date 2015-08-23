@@ -1,7 +1,7 @@
 
 package org.itsnat.spistfulhashbangtut;
 
-import org.itsnat.spistfulhashbang.SPIState;
+import org.itsnat.spistfulhashbang.SPIStateStful;
 import org.itsnat.spi.SPIStateDescriptor;
 import org.w3c.dom.Element;
 import org.w3c.dom.events.Event;
@@ -9,7 +9,7 @@ import org.w3c.dom.events.EventListener;
 import org.w3c.dom.events.EventTarget;
 import org.w3c.dom.html.HTMLDocument;
 
-public class SPITutStateOverview extends SPIState implements EventListener
+public class SPITutStateOverview extends SPIStateStful implements EventListener
 {
     protected Element popupElem;
     protected SPITutStateOverviewPopup popup;

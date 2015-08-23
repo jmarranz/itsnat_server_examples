@@ -11,6 +11,7 @@ import org.w3c.dom.html.HTMLTitleElement;
  */
 public class SPIMainDocumentConfig
 {
+    protected char stateNameSeparator = 0;
     protected HTMLTitleElement titleElem; // HTMLTitleElement
     protected Element contentParentElem;
     protected Element googleAnalyticsElem;
@@ -19,6 +20,17 @@ public class SPIMainDocumentConfig
     protected String defaultStateName;
     protected String notFoundStateName;
 
+    public char getStateNameSeparator()
+    {
+        return stateNameSeparator;
+    }
+
+    public SPIMainDocumentConfig setStateNameSeparator(char stateNameSeparator)
+    {
+        this.stateNameSeparator = stateNameSeparator;
+        return this;
+    }
+    
     public HTMLTitleElement getTitleElement()
     {
         return titleElem;
@@ -104,6 +116,7 @@ public class SPIMainDocumentConfig
 
     public SPIMainDocumentConfig check()
     {
+        if (stateNameSeparator == 0) throw new RuntimeException("State name list separator is not defined, use any char if you don't need it");
         if (titleElem == null) throw new RuntimeException("Missing titleElement");
         if (contentParentElem == null) throw new RuntimeException("Missing contentParentElement");
         if (googleAnalyticsElem == null) throw new RuntimeException("Missing googleAnalyticsElement");

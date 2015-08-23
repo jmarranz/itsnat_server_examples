@@ -1,15 +1,15 @@
 
 package org.itsnat.spistfulhsapitut;
 
-import org.itsnat.spistfulhsapi.SPIState;
+import org.itsnat.spistfulhsapi.SPIStateStful;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
 import org.itsnat.core.http.ItsNatHttpServletResponse;
-import org.itsnat.spistfulhsapi.SPIMainDocument;
+import org.itsnat.spistfulhsapi.SPIStfulHsapiMainDocument;
 import org.itsnat.spi.SPIMainDocumentConfig;
 import org.itsnat.spi.SPIStateDescriptor;
 import org.w3c.dom.Element;
 
-public class SPITutMainDocument extends SPIMainDocument
+public class SPITutMainDocument extends SPIStfulHsapiMainDocument
 {
     public SPITutMainDocument(ItsNatHttpServletRequest request, ItsNatHttpServletResponse response,SPIMainDocumentConfig config)
     {
@@ -17,9 +17,9 @@ public class SPITutMainDocument extends SPIMainDocument
     }
 
     @Override
-    public SPIState changeState(String stateName,ItsNatHttpServletRequest request,ItsNatHttpServletResponse response)
+    public SPIStateStful changeState(String stateName,ItsNatHttpServletRequest request,ItsNatHttpServletResponse response)
     {
-        SPIState state = super.changeState(stateName,request,response);
+        SPIStateStful state = super.changeState(stateName,request,response);
        
         itsNatDoc.addCodeToSend("try{ window.scroll(0,-5000); }catch(ex){}");
         // try/catch is used to avoid exceptions when some (mobile) browser does not support window.scroll()        
@@ -28,7 +28,7 @@ public class SPITutMainDocument extends SPIMainDocument
     }        
     
     @Override
-    public SPIState createSPIState(SPIStateDescriptor stateDesc,ItsNatHttpServletRequest request,ItsNatHttpServletResponse response)    
+    public SPIStateStful createSPIState(SPIStateDescriptor stateDesc,ItsNatHttpServletRequest request,ItsNatHttpServletResponse response)    
     {
         String stateName = stateDesc.getStateName();
         if (stateName.equals("overview")||stateName.equals("overview-popup"))

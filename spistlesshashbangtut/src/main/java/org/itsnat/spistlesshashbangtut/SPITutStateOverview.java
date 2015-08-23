@@ -1,7 +1,7 @@
 
 package org.itsnat.spistlesshashbangtut;
 
-import org.itsnat.spistlesshashbang.SPIState;
+import org.itsnat.spi.SPIState;
 import org.itsnat.spi.SPIStateDescriptor;
 
 public class SPITutStateOverview extends SPIState

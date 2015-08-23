@@ -1,11 +1,11 @@
 package org.itsnat.spistfulhashbangtut;
 
-import org.itsnat.spistfulhashbang.SPIState;
+import org.itsnat.spistfulhashbang.SPIStateStful;
 import org.itsnat.comp.ItsNatComponentManager;
 import org.itsnat.comp.layer.ItsNatModalLayer;
 import org.itsnat.core.domutil.ItsNatTreeWalker;
 import org.itsnat.core.html.ItsNatHTMLDocument;
-import org.itsnat.spistfulhashbang.SPIMainDocument;
+import org.itsnat.spi.SPIMainDocument;
 import org.itsnat.spi.SPIStateDescriptor;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
@@ -15,7 +15,7 @@ import org.w3c.dom.events.EventTarget;
 import org.w3c.dom.html.HTMLBodyElement;
 import org.w3c.dom.html.HTMLDocument;
 
-public class SPITutStateOverviewPopup extends SPIState implements EventListener
+public class SPITutStateOverviewPopup extends SPIStateStful implements EventListener
 {
     protected SPITutStateOverview parent;
     protected Element container;

@@ -4,13 +4,13 @@ package org.itsnat.spistlesshsapitut;
 import org.itsnat.core.event.ItsNatEventDOMStateless;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
 import org.itsnat.core.http.ItsNatHttpServletResponse;
-import org.itsnat.spistlesshsapi.SPIMainDocument;
+import org.itsnat.spistlesshsapi.SPIStlessHsapiMainDocument;
 import org.itsnat.spi.SPIMainDocumentConfig;
-import org.itsnat.spistlesshsapi.SPIState;
+import org.itsnat.spi.SPIState;
 import org.itsnat.spi.SPIStateDescriptor;
 import org.w3c.dom.Element;
 
-public class SPITutMainDocument extends SPIMainDocument
+public class SPITutMainDocument extends SPIStlessHsapiMainDocument
 {
     public SPITutMainDocument(ItsNatHttpServletRequest request, ItsNatHttpServletResponse response,SPIMainDocumentConfig config)
     {

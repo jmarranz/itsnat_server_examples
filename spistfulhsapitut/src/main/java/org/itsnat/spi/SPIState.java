@@ -1,7 +1,6 @@
 
-package org.itsnat.spistfulhsapi;
+package org.itsnat.spi;
 
-import org.itsnat.spi.SPIStateDescriptor;
 import org.itsnat.core.html.ItsNatHTMLDocument;
 
 public abstract class SPIState
@@ -38,6 +37,4 @@ public abstract class SPIState
         return stateDesc.getStateTitle();
     }  
     
-    public abstract void dispose();
-
 }
