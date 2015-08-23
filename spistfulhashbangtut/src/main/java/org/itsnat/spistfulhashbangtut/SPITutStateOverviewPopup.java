@@ -1,6 +1,6 @@
 package org.itsnat.spistfulhashbangtut;
 
-import org.itsnat.spistfulhashbang.SPIStateStful;
+import org.itsnat.spistful.SPIStateStful;
 import org.itsnat.comp.ItsNatComponentManager;
 import org.itsnat.comp.layer.ItsNatModalLayer;
 import org.itsnat.core.domutil.ItsNatTreeWalker;

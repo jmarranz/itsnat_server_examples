@@ -1,7 +1,7 @@
 
 package org.itsnat.spistfulhashbangtut;
 
-import org.itsnat.spistfulhashbang.SPIStateStful;
+import org.itsnat.spistful.SPIStateStful;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
 import org.itsnat.core.http.ItsNatHttpServletResponse;
 import org.itsnat.spistfulhashbang.SPIStfulHashbangMainDocument;

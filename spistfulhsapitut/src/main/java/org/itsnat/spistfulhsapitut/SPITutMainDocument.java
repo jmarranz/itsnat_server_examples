@@ -1,12 +1,12 @@
 
 package org.itsnat.spistfulhsapitut;
 
-import org.itsnat.spistfulhsapi.SPIStateStful;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
 import org.itsnat.core.http.ItsNatHttpServletResponse;
 import org.itsnat.spistfulhsapi.SPIStfulHsapiMainDocument;
 import org.itsnat.spi.SPIMainDocumentConfig;
 import org.itsnat.spi.SPIStateDescriptor;
+import org.itsnat.spistful.SPIStateStful;
 import org.w3c.dom.Element;
 
 public class SPITutMainDocument extends SPIStfulHsapiMainDocument

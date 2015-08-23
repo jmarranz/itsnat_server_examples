@@ -1,5 +1,5 @@
 
-package org.itsnat.spistfulhsapi;
+package org.itsnat.spistful;
 
 import org.itsnat.spi.SPIMainDocument;
 import org.itsnat.spi.SPIStateDescriptor;

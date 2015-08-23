@@ -1,7 +1,7 @@
 
 package org.itsnat.spistfulhashbangtut;
 
-import org.itsnat.spistfulhashbang.SPIStateStful;
+import org.itsnat.spistful.SPIStateStful;
 import org.itsnat.core.domutil.ItsNatTreeWalker;
 import org.itsnat.spi.SPIStateDescriptor;
 import org.w3c.dom.DocumentFragment;

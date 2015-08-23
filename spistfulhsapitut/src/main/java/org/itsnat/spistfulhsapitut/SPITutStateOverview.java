@@ -1,8 +1,8 @@
 
 package org.itsnat.spistfulhsapitut;
 
-import org.itsnat.spistfulhsapi.SPIStateStful;
 import org.itsnat.spi.SPIStateDescriptor;
+import org.itsnat.spistful.SPIStateStful;
 import org.w3c.dom.Element;
 import org.w3c.dom.events.Event;
 import org.w3c.dom.events.EventListener;
