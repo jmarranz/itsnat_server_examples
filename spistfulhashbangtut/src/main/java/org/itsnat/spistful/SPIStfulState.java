@@ -13,5 +13,4 @@ public abstract class SPIStfulState extends SPIState
     }
 
     public abstract void dispose();
-
 }
