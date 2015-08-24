@@ -1,6 +1,6 @@
 package org.itsnat.spistfulhashbangtut;
 
-import org.itsnat.spistful.SPIStateStful;
+import org.itsnat.spistful.SPIStfulState;
 import org.itsnat.comp.ItsNatComponentManager;
 import org.itsnat.comp.layer.ItsNatModalLayer;
 import org.itsnat.core.domutil.ItsNatTreeWalker;
@@ -15,7 +15,7 @@ import org.w3c.dom.events.EventTarget;
 import org.w3c.dom.html.HTMLBodyElement;
 import org.w3c.dom.html.HTMLDocument;
 
-public class SPITutStateOverviewPopup extends SPIStateStful implements EventListener
+public class SPITutStateOverviewPopup extends SPIStfulState implements EventListener
 {
     protected SPITutStateOverview parent;
     protected Element container;

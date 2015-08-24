@@ -3,7 +3,7 @@ package org.itsnat.spistfulhsapitut;
 
 import org.itsnat.core.domutil.ItsNatTreeWalker;
 import org.itsnat.spi.SPIStateDescriptor;
-import org.itsnat.spistful.SPIStateStful;
+import org.itsnat.spistful.SPIStfulState;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.events.Event;
@@ -11,7 +11,7 @@ import org.w3c.dom.events.EventListener;
 import org.w3c.dom.events.EventTarget;
 import org.w3c.dom.html.HTMLDocument;
 
-public class SPITutStateDetail extends SPIStateStful implements EventListener
+public class SPITutStateDetail extends SPIStfulState implements EventListener
 {
     protected Element detailMoreLink;
     protected Element detailMoreElem;

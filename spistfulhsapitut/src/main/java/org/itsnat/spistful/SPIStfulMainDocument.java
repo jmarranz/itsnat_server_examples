@@ -17,7 +17,7 @@ import org.w3c.dom.events.EventListener;
 public abstract class SPIStfulMainDocument extends SPIMainDocument
 {
     protected Element currentMenuItemElem;
-    protected SPIStateStful currentState;
+    protected SPIStfulState currentState;
 
     public SPIStfulMainDocument(ItsNatHttpServletRequest request, ItsNatHttpServletResponse response,SPIMainDocumentConfig config)
     {
@@ -38,7 +38,7 @@ public abstract class SPIStfulMainDocument extends SPIMainDocument
         itsNatDoc.addUserEventListener(null,"setState", listener);
     }
 
-    public SPIStateStful changeState(String stateName,ItsNatHttpServletRequest request,ItsNatHttpServletResponse response)
+    public SPIStfulState changeState(String stateName,ItsNatHttpServletRequest request,ItsNatHttpServletResponse response)
     {
         SPIStateDescriptor stateDesc = config.getSPIStateDescriptor(stateName);
         if (stateDesc == null)
@@ -67,7 +67,7 @@ public abstract class SPIStfulMainDocument extends SPIMainDocument
         return currentState;
     }
 
-    public abstract SPIStateStful createSPIState(SPIStateDescriptor stateDesc,ItsNatHttpServletRequest request,ItsNatHttpServletResponse response);
+    public abstract SPIStfulState createSPIState(SPIStateDescriptor stateDesc,ItsNatHttpServletRequest request,ItsNatHttpServletResponse response);
 
 
     public void changeActiveMenu(String stateName)

@@ -19,7 +19,7 @@ public class SPITutMainLoadRequestListener implements ItsNatServletRequestListen
         Document doc = request.getItsNatDocument().getDocument();
         
         SPIMainDocumentConfig config = new SPIMainDocumentConfig();
-        config.setStateNameSeparator('-')
+        config.setStateNameSeparator('.')
               .setTitleElement((HTMLTitleElement)doc.getElementById("titleId"))
               .setContentParentElement(doc.getElementById("contentParentId"))
               .setGoogleAnalyticsElement(doc.getElementById("googleAnalyticsId"))
