@@ -18,9 +18,9 @@ public class SPITutMainDocument extends SPIStlessHashbangMainDocument
     }
 
     @Override
-    public SPIState changeState(String stateName)
+    public SPIState changeState(String stateName,ItsNatEventDOMStateless itsNatEvt)
     {
-        SPIState state = super.changeState(stateName);
+        SPIState state = super.changeState(stateName,itsNatEvt);
        
         itsNatDoc.addCodeToSend("try{ window.scroll(0,-5000); }catch(ex){}");
         // try/catch is used to avoid exceptions when some (mobile) browser does not support window.scroll()        

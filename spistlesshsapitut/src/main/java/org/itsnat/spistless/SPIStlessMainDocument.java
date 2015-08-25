@@ -3,7 +3,6 @@ package org.itsnat.spistless;
 
 import org.itsnat.spi.SPIMainDocumentConfig;
 import org.itsnat.spi.SPIStateDescriptor;
-import javax.servlet.http.HttpServletRequest;
 import org.itsnat.core.ClientDocument;
 import org.itsnat.core.event.ItsNatEventDOMStateless;
 import org.itsnat.core.http.ItsNatHttpServletRequest;
