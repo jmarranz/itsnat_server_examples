@@ -26,7 +26,7 @@ public class SPITutStateOverviewPopup extends SPIState
     public SPITutStateOverviewPopup(SPITutStateOverview parent,SPIStateDescriptor stateDesc)
     {
         super(parent.getSPIMainDocument(),stateDesc,true);
-        this.parent = parent;    
+        this.parent = parent;
 
         SPIMainDocument spiTutDoc = getSPIMainDocument();
         ItsNatHTMLDocument itsNatDoc = getItsNatHTMLDocument();

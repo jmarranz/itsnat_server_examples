@@ -40,7 +40,7 @@ public class SPITutMainDocument extends SPIStlessHashbangMainDocument
                 popup = true;
                 stateDesc = getSPIStateDescriptor("overview");
             }
-            return new SPITutStateOverview(this,stateDesc,popup);            
+            return new SPITutStateOverview(this,stateDesc,popup);
         }
         else if (stateName.equals("detail"))
         {
