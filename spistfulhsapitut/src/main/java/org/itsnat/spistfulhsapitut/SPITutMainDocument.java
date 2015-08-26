@@ -56,5 +56,5 @@ public class SPITutMainDocument extends SPIStfulHsapiMainDocument
         if (currActiveMenuItemElem != null)
             currActiveMenuItemElem.setAttribute("class","menuOpSelected");
     }
- 
+
 }

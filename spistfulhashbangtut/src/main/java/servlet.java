@@ -1,6 +1,7 @@
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import org.itsnat.core.ClientErrorMode;
 import org.itsnat.core.ItsNatServletConfig;
 import org.itsnat.core.ItsNatServletContext;
 import org.itsnat.core.http.HttpServletWrapper;
@@ -25,6 +26,8 @@ public class servlet extends HttpServletWrapper
         ItsNatServletConfig itsNatConfig = itsNatServlet.getItsNatServletConfig();
         itsNatConfig.setFastLoadMode(true); // Not really needed, is the same as default
 
+        itsNatConfig.setClientErrorMode(ClientErrorMode.NOT_CATCH_ERRORS);        
+        
         String pathBase = getServletContext().getRealPath("/");
         String pathPages =     pathBase + "/WEB-INF/pages/";
         String pathFragments = pathBase + "/WEB-INF/fragments/";
