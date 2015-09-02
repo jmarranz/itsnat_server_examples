@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <servlet>
+        <servlet-name>plotservlet</servlet-name>
+        <servlet-class>plotservlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>imgservlet</servlet-name>
+        <servlet-class>imgservlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>plotservlet</servlet-name>
+        <url-pattern>/plotservlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>imgservlet</servlet-name>
+        <url-pattern>/imgservlet</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+	<welcome-file>
+            index.jsp
+        </welcome-file>
+    </welcome-file-list>
+</web-app>

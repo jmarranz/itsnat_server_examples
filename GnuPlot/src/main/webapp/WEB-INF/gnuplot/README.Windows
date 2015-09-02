@@ -1,0 +1,58 @@
+This is  gnuplot version 4.2.3  --  binary distribution for MS-Windows 32bit
+				    with Cygwin and X-server
+============================================================================
+
+Ignore this package if you don't know what X11, X-server and Cygwin means.
+
+In short, it contains unixish-like gnuplot executable for command line and
+with X11 terminal -- that's what you search for if you need multiple
+interactive graph windows.
+For example, "set term x11" allows you to use the figure(n); commands in
+Octave (www.octave.org) even under Windows.
+
+This distribution was obtained by the unixish way of compilation under
+Cygwin:
+	bash
+	./configure
+	make
+	make install
+
+
+Binaries included:
+------------------
+
+* gnuplot.exe: The gnuplot executable for Windows with x11 terminal.
+
+
+Installation
+------------
+
+* Unzip this package into Cygwin directory, e.g. C:\cygwin.
+  Then, you should find gnuplot.exe in Cygwin's /usr/local/bin directory,
+  and similarly for other files.
+
+* See 'help start', 'help environment' etc. for setting up your environment,
+  if not already done for the usual gnuplot for Windows.
+
+* No additional documentation is included. Please use the usual gnuplot 4.2
+  Windows binary distribution package which contains complete set of
+  README's, INSTALL's, demo/, docs/, etc.
+
+
+Running
+-------
+
+* Run X-server, for example
+    - Cygwin-X11 (free, www.cygwin.com/xfree/) -- command "startxwin.bat"
+    - Small stripped version of the above -- search web for file XFry86.zip
+    - Any other free X-server
+    - Any shareware or commercial, like eXceed, X-Win32, X-ThinPro, Astec-X,...
+
+* Set DISPLAY environmental variable to your machine (localhost)
+
+* Run gnuplot.exe and enjoy "set term x11" with its multiple graph windows
+
+
+--------------------------------------------------------------------------------
+
+The gnuplot team, March 2008
