@@ -1,6 +1,5 @@
 
-/build
-/dist
-/nbproject/private/
+/target/
 /ceylon_example/conf
 /ceylon_example/modules
+/docs_internal/
