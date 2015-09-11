@@ -34,7 +34,7 @@ public class JProxyExampleDocument
             public void handleEvent(Event evt) 
             {
                 String text = textInput.getText(); 
-                String comment = " ";
+                String comment = "";
                 resultsElem.setTextContent(text + comment);
             }
         };

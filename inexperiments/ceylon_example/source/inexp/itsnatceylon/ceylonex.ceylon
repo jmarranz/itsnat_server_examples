@@ -4,7 +4,7 @@ import java.io {Serializable}
 import org.w3c.dom.html {HTMLDocument}
 
 
-// import org.w3c.dom.events {Event,EventListener}
+// import org.w3c.dom.events {EventListener}
 // import org.w3c.dom.events {Event,EventListener,EventTarget} 
 
 import org.itsnat.core {ItsNatServletRequest,ItsNatServletResponse,ItsNatDocument}
