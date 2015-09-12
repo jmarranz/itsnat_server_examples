@@ -126,16 +126,18 @@
     <build>
         
         <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>2.0.2</version>
-            <configuration>
-                <source>1.6</source>
-                <target>1.6</target>
-                <encoding>${project.build.sourceEncoding}</encoding>
-            </configuration>
-          </plugin>
+            
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>2.0.2</version>
+              <configuration>
+                  <source>1.6</source>
+                  <target>1.6</target>
+                  <encoding>${project.build.sourceEncoding}</encoding>
+              </configuration>
+            </plugin>
+          
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -144,7 +146,7 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
-            
+            <!--
             <plugin>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>build-helper-maven-plugin</artifactId>
@@ -158,12 +160,13 @@
                   </goals>
                   <configuration>
                     <sources>
-                      <source>src/main/webapp/WEB-INF/javaex/code</source>
+                      <source>src/main/webapp/WEB-INF/jproxyex/code</source>
                     </sources>
                   </configuration>
                 </execution>
               </executions>
             </plugin>             
+            -->
             
         </plugins>
       

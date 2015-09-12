@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." default="sync_production_src_folders" name="relproxy_ex_itsnat">
+<project basedir="." default="sync_production_src_folders" name="inexperiments">
 
 	
     <target name="sync_production_src_folders">
