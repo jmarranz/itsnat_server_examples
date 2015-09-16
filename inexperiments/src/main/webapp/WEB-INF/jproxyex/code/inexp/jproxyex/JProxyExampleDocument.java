@@ -1,5 +1,6 @@
 package inexp.jproxyex;
 
+import com.innowhere.relproxy.jproxy.JProxy;
 import org.itsnat.comp.ItsNatComponentManager;
 import org.itsnat.comp.text.ItsNatHTMLInputText;
 import org.itsnat.core.ItsNatServletRequest;
@@ -15,6 +16,10 @@ public class JProxyExampleDocument
     protected ItsNatHTMLDocument itsNatDoc; // ItsNatHTMLDocument
     protected ItsNatHTMLInputText textInput; // ItsNatHTMLInputText
     protected Element resultsElem; // Element             
+
+    public JProxyExampleDocument() // required by RelProxy (when registering the EventListener)
+    {          
+    }
     
     public JProxyExampleDocument(ItsNatServletRequest request,ItsNatHTMLDocument itsNatDoc,FalseDB db)
     {      
@@ -28,17 +33,18 @@ public class JProxyExampleDocument
         ItsNatComponentManager compMgr = itsNatDoc.getItsNatComponentManager();
         this.textInput = (ItsNatHTMLInputText)compMgr.createItsNatComponentById("inputId");
 
-       EventListener listener = new EventListener()
-       {    
+        final String comment1 = "";        
+        EventListener listener = new EventListener()
+        {    
             @Override
             public void handleEvent(Event evt) 
             {
                 String text = textInput.getText(); 
-                String comment = "";
-                resultsElem.setTextContent(text + comment);
+                String comment2 = "";
+                resultsElem.setTextContent(text + comment1 + comment2);
             }
         };
-        
+        listener = JProxy.create(listener, EventListener.class);
         Element buttonElem = doc.getElementById("buttonId");
         ((EventTarget)buttonElem).addEventListener("click",listener,false);
 

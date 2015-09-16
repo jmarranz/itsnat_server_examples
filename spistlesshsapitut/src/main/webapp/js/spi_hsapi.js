@@ -1,6 +1,7 @@
 
 function LocationState()
 {
+    this.removeHash = removeHash;
     this.getURL = getURL;
     this.setURL = setURL;
     this.getStateName = getStateName;
@@ -9,12 +10,21 @@ function LocationState()
 
     this.url = window.location.href;
 
+    function removeHash(url)
+    {
+        var pos = url.lastIndexOf('#');
+        if (pos == -1) return url;
+        url = url.substring(0,pos);
+        return url;
+    }
+
     function getURL() { return window.location.href; }
     function setURL(url) { window.location.href = url; }
 
     function getStateName()
     {
         var url = this.getURL();
+        url = this.removeHash(url);
         var posR = url.lastIndexOf("/");
         if (posR == -1) return null;
         var stateName = url.substring(posR + 1);
@@ -25,6 +35,7 @@ function LocationState()
     function setStateName(stateName)
     {
         var url = this.getURL();
+        url = this.removeHash(url);
         var posR = url.lastIndexOf("/");
         var url2;
         if (url.length > posR + 1) url2 = url.substring(0,posR + 1);
@@ -44,6 +55,8 @@ function LocationState()
     function isStateNameChanged(newUrl)
     {
         var url = this.getURL();
+        url = this.removeHash(url);
+        newUrl = this.removeHash(newUrl);
         if (newUrl == url) return false;
         var posR = url.lastIndexOf("/");
         if (posR == -1) return false;
