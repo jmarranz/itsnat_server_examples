@@ -16,7 +16,6 @@ import inexp.oldwaiaria.OldWAIARIALoadApp;
 import inexp.waiaria.WAIARIALoadApp;
 import inexp.xpathex.XPathExampleLoadApp;
 
-import inexp.itsnatceylon.ceylonex_init_;
 
 
 public class inexpservlet extends HttpServletWrapper
@@ -48,7 +47,7 @@ public class inexpservlet extends HttpServletWrapper
         JOOXExampleLoadApp.init(itsNatServlet, pathPrefix);        
         JUELExampleLoadApp.init(itsNatServlet, pathPrefix);
   
-        ceylonex_init_.ceylonex_init(itsNatServlet, pathPrefix);
+        // ceylonex_init_.ceylonex_init(itsNatServlet, pathPrefix);
 
 //hello_.init(itsNatServlet,pathPrefix);
 //hello_.main(new String[0]);        
