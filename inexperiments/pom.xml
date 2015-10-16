@@ -108,9 +108,9 @@
         <dependency>
             <groupId>ceylon</groupId>
             <artifactId>ceylon-language</artifactId>
-            <version>1.0.0</version>
+            <version>1.2.0</version>
             <scope>system</scope>
-            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ceylon.language-1.0.0.jar</systemPath>
+            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ceylon.language-1.2.0.car</systemPath>
         </dependency>        
 -->        
         <dependency>

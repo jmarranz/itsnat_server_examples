@@ -3,6 +3,8 @@ import java.lang {StringJava = String}
 import java.io {Serializable}
 import org.w3c.dom.html {HTMLDocument}
 
+// import org.w3c.dom {Document}
+
 
 // import org.w3c.dom.events {EventListener}
 // import org.w3c.dom.events {Event,EventListener,EventTarget} 
@@ -13,6 +15,7 @@ import org.itsnat.core.tmpl {ItsNatDocumentTemplate}
 import org.itsnat.core.event {ItsNatServletRequestListener}
 import org.itsnat.core.html {ItsNatHTMLDocument}
  
+
 
 
 "The classic Hello World program"
@@ -35,10 +38,18 @@ shared void run(){
 class CoreExampleDocument(ItsNatHTMLDocument itsNatDoc) // satisfies EventListener // & Serializable
 {
 
-print("Hello CoreExampleDocument");
+    print("Hello CoreExampleDocument");
 
 /*
-    HTMLDocument doc = itsNatDoc.getHTMLDocument;  
+    Document doc = itsNatDoc.doc;
+    if (is HTMLDocument doc)
+    {
+
+    }
+*/
+
+/*
+    HTMLDocument doc = itsNatDoc.getHTMLDocument();  
 
     Element clickElem1 = doc.getElementById("clickableId1");
     Element clickElem2 = doc.getElementById("clickableId2"); 
@@ -49,6 +60,7 @@ print("Hello CoreExampleDocument");
     {       
     }
 */
+
 }
 
 class CoreExampleLoadListener() satisfies ItsNatServletRequestListener
